@@ -64,7 +64,7 @@ As contribuições para este projeto são bem-vindas. Para contribuir:
 
 ## 📫 Contato
 
-Para mais informações, entre em contato com <a href="mailto:cerberus_project@gmail.com">seu-email@dominio.com</a>. 📧
+Para mais informações, entre em contato com <a href="mailto:cerberus_project@gmail.com">cerberus_project@gmail.com</a>. 📧
 
 ---
 
