@@ -62,13 +62,9 @@ As contribuições para este projeto são bem-vindas. Para contribuir:
   <li>Envie um pull request com uma descrição clara das suas alterações. 📥</li>
 </ol>
 
-## 📜 Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE). 📜
-
 ## 📫 Contato
 
-Para mais informações, entre em contato com <a href="mailto:seu-email@dominio.com">seu-email@dominio.com</a>. 📧
+Para mais informações, entre em contato com <a href="mailto:cerberus_project@gmail.com">seu-email@dominio.com</a>. 📧
 
 ---
 
