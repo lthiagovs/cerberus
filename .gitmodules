@@ -1,0 +1,3 @@
+[submodule "Cerberus/Cerberus.Presentation.Trojan/Cerberus/Cerberus.Presentation.Trojan/Malicious/DDoS/DDoS-Ripper"]
+	path = Cerberus/Cerberus.Presentation.Trojan/Cerberus/Cerberus.Presentation.Trojan/Malicious/DDoS/DDoS-Ripper
+	url = https://github.com/palahsu/DDoS-Ripper
