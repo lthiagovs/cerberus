@@ -1,0 +1,7 @@
+git checkout main
+git pull origin main
+git merge thiago_branch
+# Resolva conflitos se houver
+git push origin main
+
+-----------------------

