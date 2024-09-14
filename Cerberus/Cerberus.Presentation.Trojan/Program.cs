@@ -19,6 +19,7 @@ public class Program
             //Console.WriteLine(x);
 
         }
+        Console.ReadLine();
 
     }
 }
