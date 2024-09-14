@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using NLua;
+using System.Runtime.InteropServices;
 
 public class Program
 {
@@ -9,7 +10,15 @@ public class Program
 
     private static void Main(string[] args)
     {
-        
-        Console.WriteLine(testMan());
+
+        using (Lua lua = new Lua())
+        {
+            lua.DoFile("scripts\\keylogger.lua");
+            LuaFunction testFunction = lua["testA"] as LuaFunction;
+            testFunction.Call();
+            //Console.WriteLine(x);
+
+        }
+
     }
 }
