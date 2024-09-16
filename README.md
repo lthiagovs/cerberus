@@ -3,7 +3,7 @@
 ...Em desenvolvimento...
 ---
 
-**Cerberus** é um programa multifacetado desenvolvido em C++, C# e Lua, que oferece controle remoto através de uma interface web. A aplicação consiste em um trojan que interage com um site, uma API feita em ASP.NET com arquitetura MVC, e um banco de dados MySQL, proporcionando funcionalidades avançadas de controle remoto.
+**Cerberus** é uma ferramenta de controle remoto desenvolvida em C++, C# e Lua, que permite a interação com sistemas via uma interface web. Ela oferece funcionalidades como captura de tela, visualização ao vivo com VNC, transferência de arquivos e monitoramento de atividades.
 
 > ⚠ **Aviso:** Este projeto é fornecido apenas para fins educacionais. Não nos responsabilizamos por qualquer uso indevido. O uso sem permissão é ilegal e antiético. Não desenvolva, distribua ou utilize software malicioso para qualquer fim ilícito.
 
