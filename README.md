@@ -11,8 +11,8 @@
 ## 🚀 Funcionalidades
 
 <ul>
-  <li><strong>Controle Remoto:</strong> </li>
-  <li><strong>Comunicação Segura:</strong> </li>
+  <li><strong>Controle Remoto</strong> </li>
+  <li><strong>Comunicação Segura</strong> </li>
   <li><strong>Interação com Sistema:</strong> Screenshot, screen live view com VNC, Download e Upload de arquivos, chat entre host e client, botnet, keylogger, etc...</li>
 </ul>
 
@@ -57,4 +57,3 @@ As contribuições para este projeto são bem-vindas. Para contribuir:
 
 Para mais informações, entre em contato com <a href="mailto:cerberus_project@gmail.com">cerberus_project@gmail.com</a>. 📧
 
----
