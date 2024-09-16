@@ -1,59 +1,48 @@
 # <span style="color: #3498db;">Cerberus</span>
 
-
 ...Em desenvolvimento...
 ---
 
-**Cerberus** é um programa multifacetado desenvolvido em C++, C# e .Lua que permite controle remoto por meio de uma interface web. A aplicação é composta por um trojan que interage com um site, API feita em ASP.NET com arquitetura MVC, e um banco de dados MySQL para fornecer funcionalidades avançadas de controle remoto.
+**Cerberus** é um programa multifacetado desenvolvido em C++, C# e Lua, que oferece controle remoto através de uma interface web. A aplicação consiste em um trojan que interage com um site, uma API feita em ASP.NET com arquitetura MVC, e um banco de dados MySQL, proporcionando funcionalidades avançadas de controle remoto.
 
-> ⚠️ **Aviso:** Este projeto é fornecido apenas para fins educacionais. Não nos responsabilizamos por qualquer uso inapropriado e sem permissão, é ilegal e antiético. Não desenvolva, distribua ou use software malicioso para qualquer finalidade ilícita.
+> ⚠ **Aviso:** Este projeto é fornecido apenas para fins educacionais. Não nos responsabilizamos por qualquer uso indevido. O uso sem permissão é ilegal e antiético. Não desenvolva, distribua ou utilize software malicioso para qualquer fim ilícito.
 
 ## 🚀 Funcionalidades
 
-<ul>
-  <li><strong>Controle Remoto</strong> </li>
-  <li><strong>Comunicação Segura</strong> </li>
-  <li><strong>Interação com Sistema:</strong> Screenshot, screen live view com VNC, Download e Upload de arquivos, chat entre host e client, botnet, keylogger, etc...</li>
-</ul>
+- **Controle Remoto**
+- **Comunicação Segura**
+- **Interação com o Sistema:** Captura de tela, visualização ao vivo com VNC, download e upload de arquivos, chat entre host e cliente, botnet, keylogger, entre outros.
 
 ## 🧩 Arquitetura
 
-<ul>
-  <li><strong>Frontend:</strong> Site em ASP.NET MVC 🖥️</li>
-  <li><strong>Backend:</strong> API desenvolvida em C# 🔄</li>
-  <li><strong>Banco de Dados:</strong> MySql 🗃️</li>
-  <li><strong>Trojan:</strong> Implementado em C++ e .Lua 🛠️</li>
-</ul>
+- **Frontend:** Site em ASP.NET MVC 🖥
+- **Backend:** API desenvolvida em C# 🔄
+- **Banco de Dados:** MySQL 🗃
+- **Trojan:** Implementado em C++ e Lua 🛠
 
 ## 📋 Requisitos
 
 - **Para Compilar:**
-  <ul>
-    <li><a href="https://gcc.gnu.org/">C++ Compiler</a> (ou outro de sua escolha) 🛠️</li>
-    <li><a href="https://dotnet.microsoft.com/download">.NET SDK</a> 🌐</li>
-    <li><a href="https://www.mysql.com/">MySql</a> 🗃️</li>
-    <li><a href="https://www.lua.org/download.html">Lua</a> 📝</li>
-    <li><a href="https://www.python.org/">Python 3.x</li>
-  </ul>
+  - [C++ Compiler](https://gcc.gnu.org/) (ou outro de sua escolha) 🛠
+  - [.NET SDK](https://dotnet.microsoft.com/download) 🌐
+  - [MySQL](https://www.mysql.com/) 🗃
+  - [Lua](https://www.lua.org/download.html) 📝
+  - [Python 3.x](https://www.python.org/)
 
-## 🖥️ Instalação
+## 🖥 Instalação
 
-<ol>
-    <li>Não disponivel ainda. :(</li>  
-</ol>
+1. Não disponível ainda. :(
 
 ## 🤝 Contribuição
 
-As contribuições para este projeto são bem-vindas. Para contribuir:
+Contribuições para este projeto são bem-vindas. Para contribuir:
 
-<ol>
-  <li>Faça um fork do repositório. 🍴</li>
-  <li>Crie uma branch para sua feature ou correção. 🌿</li>
-  <li>Faça suas alterações e escreva testes para garantir a funcionalidade. 🧪</li>
-  <li>Envie um pull request com uma descrição clara das suas alterações. 📥</li>
-</ol>
+1. Faça um fork do repositório. 🍴
+2. Crie uma branch para sua feature ou correção. 🌿
+3. Faça suas alterações e escreva testes para garantir a funcionalidade. 🧪
+4. Envie um pull request com uma descrição clara das suas alterações. 📥
 
 ## 📫 Contato
 
-Para mais informações, entre em contato com <a href="mailto:cerberus_project@gmail.com">cerberus_project@gmail.com</a>. 📧
+Para mais informações, entre em contato pelo e-mail [cerberus_project@gmail.com](mailto:cerberus_project@gmail.com). 📧
 
