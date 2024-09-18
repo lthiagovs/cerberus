@@ -1,1 +1,8 @@
-manel besta
+dotnet ef migrations add cerberus0.1 --project Cerberus.Infrastructure.Data\Cerberus.Infrastructure.Data.csproj --startup-project Cerberus.API\Cerberus.API.csproj
+dotnet ef database update --project Cerberus.Infrastructure.Data\Cerberus.Infrastructure.Data.csproj --startup-project Cerberus.API\Cerberus.API.csproj
+
+
+paths:
+Cerberus.Infrastructure.Data/Cerberus.Infrastructure.Data.csproj
+
+Cerberus.API/Cerberus.API.csproj
