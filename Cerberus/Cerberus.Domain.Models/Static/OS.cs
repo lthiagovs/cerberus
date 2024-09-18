@@ -1,6 +1,6 @@
 ﻿namespace Cerberus.Domain.Models.Static
 {
-    public enum OperatingSystem
+    public enum OS
     {
         Windows,
         Linux,

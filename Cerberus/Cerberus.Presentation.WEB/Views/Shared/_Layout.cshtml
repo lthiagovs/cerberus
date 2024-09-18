@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cerberus.Presentation.WEB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Cerberus.Presentation.WEB.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #00ff00; /* Verde brilhante */
+            background-color: #000; /* Preto */
+        }
+
+        header {
+            background-color: #111; /* Um tom mais escuro de preto */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 2px solid #00ff00; /* Linha verde brilhante */
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            color: #00ff00; /* Verde brilhante */
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 1rem;
+        }
+
+        .nav-links a {
+            color: #00ff00; /* Verde brilhante */
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .logo, .nav-links a, footer p {
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+        }
+
+        footer {
+            background-color: #111; /* Um tom mais escuro de preto */
+            padding: 1rem;
+            text-align: center;
+            border-top: 2px solid #00ff00; /* Linha verde brilhante */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+        }
+
+        footer p {
+            color: #00ff00; /* Verde brilhante */
+        }
+    </style>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">CERBERUS.NET</a>
+                <ul class="nav-links">
+                    <li><a href="@Url.Action("Index", "Home")">Início</a></li>
+                    <li><a href="@Url.Action("Index", "Login")">Area do Cliente</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p></p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
