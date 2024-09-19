@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\" />
+    <ProjectReference Include="..\Cerberus.Domain.Models\Cerberus.Domain.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
