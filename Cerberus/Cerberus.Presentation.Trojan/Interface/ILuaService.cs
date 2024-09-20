@@ -1,15 +1,16 @@
-﻿namespace Cerberus.Presentation.Trojan.Interface
+﻿using NLua;
+
+namespace Cerberus.Presentation.Trojan.Interface
 {
     public interface ILuaService
     {
 
         public string Name { get; set; }
+        public LuaFunction _luaFunction { get; set; }
         
-        public bool Start();
+        public void Start();
 
-        public bool Get();
-
-        public bool Stop();
+        public void Stop();
 
     }
 

