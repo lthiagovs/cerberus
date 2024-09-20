@@ -1,54 +1,84 @@
 ﻿using Cerberus.Presentation.Trojan.Exceptions;
 using Cerberus.Presentation.Trojan.Interface;
-using Cerberus.Presentation.Trojan.Observer;
+using Newtonsoft.Json;
 using NLua;
 
 namespace Cerberus.Presentation.Trojan.Core
 {
     public class LuaService : ILuaService
     {
-
+         
         public string Name { get; set;}
+        public bool LoopScript {  get; set;}
 
         private readonly Lua _lua;
-        public LuaFunction _luaFunction { get; set; }
-        private LuaObserver _luaObserver;
-        private CancellationTokenSource? _ctsToken;
+        private Task<object[]>? _luaTask;
+        private CancellationTokenSource? _luaToken;
+
+
         private string? Result {  get; set; }
 
-        private LuaService(Lua lua)
+        public LuaService(Lua lua, string Name, bool LoopScript)
         {
-            this.Name = "";
+            this.Name = Name;
             this._lua = lua;
+            this._luaTask = null;
+            this._luaToken = null;
+            this.LoopScript = LoopScript;
+
             Init();
         }
 
         private void Init()
         {
 
-            this._lua.DoFile("scripts\\"+this.Name);
-            this._luaFunction = this._lua.GetFunction(this.Name);
+            this._lua.DoFile("scripts\\"+this.Name+".lua");
+            LuaFunction luaFunction = this._lua.GetFunction(this.Name);
 
-            if (this._luaFunction == null)
+            if (luaFunction == null)
                 throw new LuaNotFoundException();
 
-            this._ctsToken = new CancellationTokenSource();
-            this._luaObserver.LuaCompleted += this.Send;
+            this._luaToken = new CancellationTokenSource();
+            this._luaTask = new Task<object[]>(() => luaFunction.Call(),_luaToken.Token);
 
         }
 
-        public async void Start()
+        public void Start()
         {
-            if (this._luaObserver != null)
-            {
 
-                string result = await this._luaObserver.ExecuteScript(() => Task.Run(() => this._luaFunction.Call()));
+            if (this._luaTask != null)
+            {
+                this._luaTask.Start();
+                object[] result = this._luaTask.Result;
+                Send(JsonConvert.SerializeObject(result));
+                if (this.LoopScript)
+                {
+                    Init();
+                    Start();
+                }
+            }
+
+        }
+
+        public async Task StartAsync()
+        {
+
+            if (this._luaTask != null)
+            {
+                this._luaTask.Start();
+                object[] result = await this._luaTask;
+                Send(JsonConvert.SerializeObject(result));
+                if (this.LoopScript)
+                {
+                    Init();
+                    await StartAsync();
+                }
 
             }
 
         }
 
-        public void Send(object sender, string result) 
+        public void Send(string result) 
         {
 
             Console.WriteLine("Sending: " + result);
@@ -56,9 +86,8 @@ namespace Cerberus.Presentation.Trojan.Core
 
         public void Stop()
         {
-            if (this._ctsToken!=null)
-                this._ctsToken.Cancel();
-
+            if(this._luaToken != null)
+                this._luaToken.Cancel();
         }
 
     }
