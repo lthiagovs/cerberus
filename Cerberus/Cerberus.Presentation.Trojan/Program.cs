@@ -1,4 +1,5 @@
 ﻿using Cerberus.Presentation.Trojan.Core;
+using Cerberus.Presentation.Trojan.Helper;
 using NLua;
 using System.Runtime.InteropServices;
 
@@ -37,18 +38,24 @@ public class Program
         //}
         #endregion
 
+        foreach(string a in LuaScriptHelper.GetAllScripts())
+        {
+
+            Console.WriteLine(a);
+        }
+
         using (Lua lua = new Lua()) {
 
-            LuaService lService = new LuaService(lua, "luaok", true);
+            //LuaService lService = new LuaService(lua, "luaok", true);
 
-            _ = lService.StartAsync();
+            //_ = lService.StartAsync();
 
             while (true)
             {
 
                 if (Console.ReadLine() == "end")
                 {
-                    lService.Stop();
+                    //lService.Stop();
                     break;
                 }
 
