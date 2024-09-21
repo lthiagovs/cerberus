@@ -17,5 +17,20 @@
             return scripts;
         }
 
+        public static List<string> GetAllScriptNames()
+        {
+
+            List<string> scripts = LuaScriptHelper.GetAllScripts().ToList();
+
+            for (int i = 0; i < scripts.Count; i++)
+            {
+
+                scripts[i] = scripts[i].Replace(".lua", "").Replace("scripts\\", "");
+
+            }
+
+            return scripts;
+        }
     }
+    
 }
