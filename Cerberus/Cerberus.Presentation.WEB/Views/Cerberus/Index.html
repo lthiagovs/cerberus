@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trojan Dashboard - Cerberus .NET</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #2e2e2e;
+            color: #f0f0f0;
+        }
+        .header {
+            background-color: #4c4c4c;
+            color: #ff0000; /* Neon vermelho */
+            width: 100%;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            padding-left: 20px; /* Padding à esquerda */
+        }
+        .header img {
+            height: 40px;
+            width: 40px; /* Define a largura para arredondar */
+            border-radius: 50%; /* Faz a logo arredondada */
+            margin-right: 15px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+        .infected-list {
+            width: 80%;
+            background-color: #3a3a3a;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ff0000;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+        .infected-list h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ff0000;
+            color: #f0f0f0;
+        }
+        th {
+            background-color: #505050;
+        }
+        td {
+            background-color: #3a3a3a;
+        }
+        .action-btn {
+            background-color: #ff0000;
+            color: #2e2e2e;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #2e2e2e;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #ff0000;
+            border-bottom: 1px solid #ff0000;
+        }
+        .dropdown a:hover {
+            background-color: #505050;
+        }
+        .map-container {
+            width: 80%;
+            height: 400px;
+            background-color: #3a3a3a;
+            border-radius: 15px;
+            border: 2px solid #ff0000;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+        .relative-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="./logo.jpg" alt="Cerberus Logo">
+    <h1>Cerberus .NET</h1>
+</div>
+
+<div class="content">
+    <div class="infected-list">
+        <h2>Computadores Infectados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>PC</th>
+                    <th>User</th>
+                    <th>Install Date</th>
+                    <th>Flag</th>
+                    <th>Country</th>
+                    <th>OS</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="computer-list">
+                <tr class="relative-container">
+                    <td>DESKTOP-001</td>
+                    <td>Admin</td>
+                    <td>12/09/2024</td>
+                    <td>Ativo</td>
+                    <td>EUA</td>
+                    <td>Windows 10</td>
+                    <td><button class="action-btn">Ações</button>
+                        <div class="dropdown">
+                            <a href="#">Keylogger</a>
+                            <a href="#">Screenshot</a>
+                            <a href="#">DDoS</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="relative-container">
+                    <td>LAPTOP-002</td>
+                    <td>root</td>
+                    <td>05/08/2024</td>
+                    <td>Inativo</td>
+                    <td>França</td>
+                    <td>Ubuntu 20.04</td>
+                    <td><button class="action-btn">Ações</button>
+                        <div class="dropdown">
+                            <a href="#">Keylogger</a>
+                            <a href="#">Screenshot</a>
+                            <a href="#">DDoS</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="relative-container">
+                    <td>MAC-003</td>
+                    <td>user123</td>
+                    <td>25/07/2024</td>
+                    <td>Ativo</td>
+                    <td>Austrália</td>
+                    <td>macOS</td>
+                    <td><button class="action-btn">Ações</button>
+                        <div class="dropdown">
+                            <a href="#">Keylogger</a>
+                            <a href="#">Screenshot</a>
+                            <a href="#">DDoS</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+</div>
+
+<script>
+    // Inicializa o mapa com dados de exemplo
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 2,
+            center: { lat: 0, lng: 0 }
+        });
+
+        const computers = [
+            { id: 1, ip: '192.168.1.10', location: '37.7749,-122.4194' },
+            { id: 2, ip: '192.168.1.20', location: '48.8566,2.3522' },
+            { id: 3, ip: '192.168.1.30', location: '-33.8688,151.2093' }
+        ];
+
+        computers.forEach(computer => {
+            const location = computer.location.split(',');
+            const latLng = new google.maps.LatLng(parseFloat(location[0]), parseFloat(location[1]));
+
+            new google.maps.Marker({
+                position: latLng,
+                map: map,
+                title: `IP: ${computer.ip}`
+            });
+        });
+    }
+
+    // Mostra/esconde o dropdown ao clicar no botão "Ações"
+    document.querySelectorAll('.action-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            const dropdown = this.nextElementSibling;
+            const isVisible = dropdown.style.display === 'block';
+            closeAllDropdowns(); // Fecha todos os dropdowns
+            if (!isVisible) {
+                dropdown.style.display = 'block';
+                event.stopPropagation(); // Previne que o clique no botão feche o dropdown
+            }
+        });
+    });
+
+    // Fecha todos os dropdowns quando clicamos fora
+    document.addEventListener('click', function () {
+        closeAllDropdowns();
+    });
+
+    function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+</script>
+
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+</body>
+</html>
+
