@@ -1,41 +1,41 @@
 ﻿using Cerberus.API.Interfaces;
-using Cerberus.Domain.Models.Person;
+using Cerberus.Domain.Models.Machine;
 using Cerberus.Infrastructure.Data.Context;
 
 namespace Cerberus.API.Repository
 {
-
-    public class VictimRepository : IVictimRepository
+    public class ComputerRepository : IComputerRepository
     {
 
-        public readonly DataContext _context;
+        private readonly DataContext _context;
 
-        public VictimRepository(DataContext context)
+        public ComputerRepository(DataContext context)
         {
+
             this._context = context;
         }
 
-        public bool CreateVictim(Victim victim)
+        public bool CreateComputer(Computer computer)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteVictim(Victim victim)
+        public bool DeleteComputer(Computer computer)
         {
             throw new NotImplementedException();
         }
 
-        public Victim? GetVictimByID(string ID)
+        public Computer? GetComputerByID(string ID)
         {
             throw new NotImplementedException();
         }
 
-        public Victim? GetVictimByName()
+        public Computer? GetComputerByIP(string IP)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Victim> GetVictims()
+        public ICollection<Computer> GetComputers()
         {
             throw new NotImplementedException();
         }
@@ -45,7 +45,7 @@ namespace Cerberus.API.Repository
             throw new NotImplementedException();
         }
 
-        public bool UpdateVictim(Victim victim)
+        public bool UpdateComputer(Computer computer)
         {
             throw new NotImplementedException();
         }

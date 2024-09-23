@@ -10,13 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddControllers();
-
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString)));
 
 //Repository
 #region
 builder.Services.AddScoped<IVictimRepository, VictimRepository>();
+builder.Services.AddScoped<IComputerFileRepository, ComputerFileRepository>();
+builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IComputerScriptRepository, ComputerScriptRepository>();
 #endregion
 
 builder.Services.AddEndpointsApiExplorer();

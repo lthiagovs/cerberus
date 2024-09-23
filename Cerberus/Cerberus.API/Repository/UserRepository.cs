@@ -4,38 +4,42 @@ using Cerberus.Infrastructure.Data.Context;
 
 namespace Cerberus.API.Repository
 {
-
-    public class VictimRepository : IVictimRepository
+    public class UserRepository : IUserRepository
     {
 
-        public readonly DataContext _context;
+        private readonly DataContext _context;
 
-        public VictimRepository(DataContext context)
+        public UserRepository(DataContext context)
         {
             this._context = context;
         }
 
-        public bool CreateVictim(Victim victim)
+        public bool CreateUser(User user)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteVictim(Victim victim)
+        public bool DeleteUser(User user)
         {
             throw new NotImplementedException();
         }
 
-        public Victim? GetVictimByID(string ID)
+        public User? GetUserByID(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public Victim? GetVictimByName()
+        public User? GetUserByLogin(string Login, string Password)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Victim> GetVictims()
+        public User? GetUserByName(string Name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<User> GetUsers()
         {
             throw new NotImplementedException();
         }
@@ -45,7 +49,7 @@ namespace Cerberus.API.Repository
             throw new NotImplementedException();
         }
 
-        public bool UpdateVictim(Victim victim)
+        public bool UpdateUser(User user)
         {
             throw new NotImplementedException();
         }
