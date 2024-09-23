@@ -1,41 +1,35 @@
 ﻿using Cerberus.API.Interfaces;
-using Cerberus.Domain.Models.Person;
+using Cerberus.Domain.Models.Machine;
 using Cerberus.Infrastructure.Data.Context;
 
 namespace Cerberus.API.Repository
 {
-
-    public class VictimRepository : IVictimRepository
+    public class ComputerScriptRepository : IComputerScriptRepository
     {
 
-        public readonly DataContext _context;
+        private readonly DataContext _context;
 
-        public VictimRepository(DataContext context)
+        public ComputerScriptRepository(DataContext context)
         {
             this._context = context;
         }
 
-        public bool CreateVictim(Victim victim)
+        public bool CreateComputerScript(ComputerScript computerScript)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteVictim(Victim victim)
+        public bool DeleteComputerScript(ComputerScript computerScript)
         {
             throw new NotImplementedException();
         }
 
-        public Victim? GetVictimByID(string ID)
+        public ComputerScript? GetComputerScriptByID(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public Victim? GetVictimByName()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Victim> GetVictims()
+        public ICollection<ComputerScript> GetComputerScripts()
         {
             throw new NotImplementedException();
         }
@@ -45,7 +39,7 @@ namespace Cerberus.API.Repository
             throw new NotImplementedException();
         }
 
-        public bool UpdateVictim(Victim victim)
+        public bool UpdateComputerScript(ComputerScript computerScript)
         {
             throw new NotImplementedException();
         }
