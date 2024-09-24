@@ -34,22 +34,43 @@ namespace Cerberus.API.Controllers
 
         [HttpGet("{IP}")]
         [ProducesResponseType(200,Type = typeof(Victim))]
-        public IActionResult GetVictimByIp(string IP)
+        public IActionResult GetVictimByID(int ID)
         {
 
-            var victim = _victimRepository.GetVictimByIp(IP);
+            var victim = _victimRepository.GetVictimByID(ID);
 
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(victim== null)
+            if(victim == null)
             {
                 return NotFound();
             }
 
             return Ok(victim);
+
+        }
+
+        [HttpGet("{Name}")]
+        [ProducesResponseType(200,Type = typeof(Victim))]
+        public IActionResult GetVictimByName(string Name)
+        {
+            var victim = _victimRepository.GetVictimByName(Name);
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(victim == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(victim);
+
 
         }
 

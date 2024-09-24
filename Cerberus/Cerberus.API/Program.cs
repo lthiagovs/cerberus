@@ -2,6 +2,7 @@ using Cerberus.API.Interfaces;
 using Cerberus.API.Repository;
 using Cerberus.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString)));
 

@@ -15,39 +15,44 @@ namespace Cerberus.API.Repository
             this._context = context;
         }
 
-        public bool CreateComputer(Computer computer)
+        public ICollection<Computer> GetComputers()
         {
-            throw new NotImplementedException();
+            return this._context.Computer.OrderBy(computer => computer.Id).ToList();
         }
 
-        public bool DeleteComputer(Computer computer)
+        public Computer? GetComputerByID(int ID)
         {
-            throw new NotImplementedException();
-        }
-
-        public Computer? GetComputerByID(string ID)
-        {
-            throw new NotImplementedException();
+            return this._context.Computer.FirstOrDefault(computer => computer.Id == ID);
         }
 
         public Computer? GetComputerByIP(string IP)
         {
-            throw new NotImplementedException();
+            return this._context.Computer.FirstOrDefault(computer => computer.IP == IP);
         }
 
-        public ICollection<Computer> GetComputers()
+        public bool CreateComputer(Computer computer)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Save()
-        {
-            throw new NotImplementedException();
+            this._context.Add(computer);
+            return this.Save();
         }
 
         public bool UpdateComputer(Computer computer)
         {
-            throw new NotImplementedException();
+            this._context.Update(computer);
+            return this.Save();
         }
+
+        public bool DeleteComputer(Computer computer)
+        {
+            this._context.Remove(computer);
+            return this.Save();
+        }
+
+        public bool Save()
+        {
+            var saved = this._context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
     }
 }

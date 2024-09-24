@@ -11,7 +11,7 @@ namespace Cerberus.API.Interfaces
 
         public User? GetUserByName(string Name);
 
-        public User? GetUserByLogin(string Login, string Password);
+        public User? GetUserByLogin(string Email, string Password);
 
         public bool CreateUser(User user);
 
