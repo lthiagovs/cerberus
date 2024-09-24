@@ -7,9 +7,9 @@ namespace Cerberus.API.Interfaces
 
         public ICollection<Victim> GetVictims();
 
-        public Victim? GetVictimByID(string ID);
+        public Victim? GetVictimByID(int ID);
 
-        public Victim? GetVictimByName();
+        public Victim? GetVictimByName(string Name);
 
         public bool CreateVictim(Victim victim);
 

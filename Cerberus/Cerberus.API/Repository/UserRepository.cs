@@ -14,44 +14,51 @@ namespace Cerberus.API.Repository
             this._context = context;
         }
 
-        public bool CreateUser(User user)
+        public ICollection<User> GetUsers()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteUser(User user)
-        {
-            throw new NotImplementedException();
+            return _context.User.OrderBy(user => user.Id).ToList();
         }
 
         public User? GetUserByID(int ID)
         {
-            throw new NotImplementedException();
+            return this._context.User.FirstOrDefault(user => user.Id == ID);
         }
-
-        public User? GetUserByLogin(string Login, string Password)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public User? GetUserByName(string Name)
         {
-            throw new NotImplementedException();
+            return this._context.User.FirstOrDefault(user => user.Name == Name);
         }
 
-        public ICollection<User> GetUsers()
+        public User? GetUserByLogin(string Email, string Password)
         {
-            throw new NotImplementedException();
+            return this._context.User.FirstOrDefault(user => user.Email == Email && user.Password == Password);
         }
 
-        public bool Save()
+        public bool CreateUser(User user)
         {
-            throw new NotImplementedException();
+
+            this._context.Add(user);
+            return this.Save();
+
         }
 
         public bool UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            this._context.Update(user);
+            return this.Save();
         }
+
+        public bool DeleteUser(User user)
+        {
+            this._context.Remove(user);
+            return this.Save();
+        }
+
+        public bool Save()
+        {
+            var saved = this._context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
     }
 }

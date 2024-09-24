@@ -15,8 +15,6 @@ namespace Cerberus.API.Interfaces
 
         public bool DeleteComputerScript(ComputerScript computerScript);
 
-        public bool Save();
-
     }
 
 }

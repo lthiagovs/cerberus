@@ -14,34 +14,39 @@ namespace Cerberus.API.Repository
             this._context = context;
         }
 
-        public bool CreateComputerScript(ComputerScript computerScript)
+        public ICollection<ComputerScript> GetComputerScripts()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteComputerScript(ComputerScript computerScript)
-        {
-            throw new NotImplementedException();
+            return this._context.ComputerScript.OrderBy(script => script.Id).ToList();  
         }
 
         public ComputerScript? GetComputerScriptByID(int ID)
         {
-            throw new NotImplementedException();
+            return this._context.ComputerScript.FirstOrDefault(script => script.Id == ID);
         }
 
-        public ICollection<ComputerScript> GetComputerScripts()
+        public bool CreateComputerScript(ComputerScript computerScript)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Save()
-        {
-            throw new NotImplementedException();
+            this._context.Add(computerScript);
+            return this.Save();
         }
 
         public bool UpdateComputerScript(ComputerScript computerScript)
         {
-            throw new NotImplementedException();
+            this._context.Update(computerScript);
+            return this.Save();
         }
+
+        public bool DeleteComputerScript(ComputerScript computerScript)
+        {
+            this._context.Remove(computerScript);
+            return this.Save();
+        }
+
+        public bool Save()
+        {
+            var saved = this._context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
     }
 }

@@ -7,7 +7,7 @@ namespace Cerberus.API.Interfaces
 
         public ICollection<Computer> GetComputers();
 
-        public Computer? GetComputerByID(string ID);
+        public Computer? GetComputerByID(int ID);
 
         public Computer? GetComputerByIP(string IP);
 
