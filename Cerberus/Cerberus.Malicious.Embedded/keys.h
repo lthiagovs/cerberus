@@ -1,5 +1,5 @@
 #pragma once
 
-int getPressedKey();
+char getPressedKey();
 
 const char* convertToChar(int key);

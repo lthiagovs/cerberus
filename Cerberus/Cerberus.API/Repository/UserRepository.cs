@@ -16,12 +16,12 @@ namespace Cerberus.API.Repository
 
         public ICollection<User> GetUsers()
         {
-            return _context.User.OrderBy(user => user.Id).ToList();
+            return _context.User.OrderBy(user => user.ID).ToList();
         }
 
         public User? GetUserByID(int ID)
         {
-            return this._context.User.FirstOrDefault(user => user.Id == ID);
+            return this._context.User.FirstOrDefault(user => user.ID == ID);
         }
         
         public User? GetUserByName(string Name)
@@ -32,6 +32,11 @@ namespace Cerberus.API.Repository
         public User? GetUserByLogin(string Email, string Password)
         {
             return this._context.User.FirstOrDefault(user => user.Email == Email && user.Password == Password);
+        }
+
+        public bool UserExist(int ID)
+        {
+            return this._context.User.Any(user => user.ID == ID);
         }
 
         public bool CreateUser(User user)

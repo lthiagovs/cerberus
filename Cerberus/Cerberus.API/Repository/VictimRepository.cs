@@ -17,17 +17,22 @@ namespace Cerberus.API.Repository
 
         public ICollection<Victim> GetVictims()
         {
-            return this._context.Victim.OrderBy(victim => victim.Id).ToList();
+            return this._context.Victim.OrderBy(victim => victim.ID).ToList();
         }
         
         public Victim? GetVictimByID(int ID)
         {
-            return this._context.Victim.FirstOrDefault(victim => victim.Id == ID);
+            return this._context.Victim.FirstOrDefault(victim => victim.ID == ID);
         }
 
         public Victim? GetVictimByName(string Name)
         {
             return this._context.Victim.FirstOrDefault(victim => victim.Name == Name);
+        }
+
+        public bool VictimExist(int ID)
+        {
+            return this._context.Victim.Any(victim => victim.ID == ID);
         }
 
         public bool CreateVictim(Victim victim)

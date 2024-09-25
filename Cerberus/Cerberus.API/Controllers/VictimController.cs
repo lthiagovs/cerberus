@@ -1,6 +1,7 @@
 ﻿using Cerberus.API.Interfaces;
 using Cerberus.Domain.Models.Person;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Cerberus.API.Controllers
 {
@@ -72,6 +73,78 @@ namespace Cerberus.API.Controllers
             return Ok(victim);
 
 
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateVictim([FromBody] Victim victim)
+        {
+
+            if (victim == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!this._victimRepository.CreateVictim(victim))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving.");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Sucessfully created");
+
+        }
+
+        [HttpPut("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult UpdateVictim(int ID, [FromBody]Victim victim)
+        {
+
+            if (victim == null)
+                return BadRequest(ModelState);
+
+            if (ID != victim.ID)
+                return BadRequest(ModelState);
+
+            if (!this._victimRepository.VictimExist(ID))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!this._victimRepository.UpdateVictim(victim))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating vicitm.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+
+        }
+
+        [HttpDelete("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult DeleteVictim(int ID)
+        {
+
+            var victim = this._victimRepository.GetVictimByID(ID);
+
+            if (victim == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!this._victimRepository.DeleteVictim(victim))
+                ModelState.AddModelError("", "Something went wrong deleting victim.");
+
+            return NoContent();
         }
 
     }

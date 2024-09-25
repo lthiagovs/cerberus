@@ -8,7 +8,7 @@ extern "C" {
     #include "Lua54/include/lualib.h"
 
     __declspec(dllexport) int lua_getKey(lua_State* L) {
-        int key = (int)getPressedKey();
+        int key = getPressedKey();
         lua_pushnumber(L,key);
         return 1;
     }

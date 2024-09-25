@@ -5,9 +5,11 @@ namespace Cerberus.API.Interfaces
     public interface IComputerFileRepository : IRepository
     {
 
-        public ICollection<ComputerFile> GetComputerFiles(int computerID);
+        public ICollection<ComputerFile> GetComputerFiles(int ID);
 
         public ComputerFile? GetComputerFileByID(int ID);
+
+        public bool ComputerFileExist(int ID);
 
         public bool CreateComputerFile(ComputerFile computerFile);
 

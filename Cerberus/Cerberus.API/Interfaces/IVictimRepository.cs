@@ -11,6 +11,9 @@ namespace Cerberus.API.Interfaces
 
         public Victim? GetVictimByName(string Name);
 
+
+        public bool VictimExist(int ID);
+
         public bool CreateVictim(Victim victim);
 
         public bool UpdateVictim(Victim victim);

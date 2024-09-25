@@ -13,6 +13,8 @@ namespace Cerberus.API.Interfaces
 
         public User? GetUserByLogin(string Email, string Password);
 
+        public bool UserExist(int ID);
+
         public bool CreateUser(User user);
 
         public bool UpdateUser(User user);
