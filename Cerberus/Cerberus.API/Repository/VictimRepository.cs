@@ -30,7 +30,7 @@ namespace Cerberus.API.Repository
             return this._context.Victim.FirstOrDefault(victim => victim.Name == Name);
         }
 
-        public bool VictimExists(int ID)
+        public bool VictimExist(int ID)
         {
             return this._context.Victim.Any(victim => victim.ID == ID);
         }

@@ -7,7 +7,7 @@ namespace Cerberus.API.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller")]
+    [Route("api/[controller]")]
     public class ComputerFileController : Controller
     {
         
@@ -73,20 +73,20 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPut("{fileID}")]
+        [HttpPut("{ID}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateComputerFile(int fileID, [FromBody]ComputerFile computerFile)
+        public IActionResult UpdateComputerFile(int ID, [FromBody]ComputerFile computerFile)
         {
 
             if (computerFile == null)
                 return BadRequest(ModelState);
 
-            if (fileID != computerFile.ID)
+            if (ID != computerFile.ID)
                 return BadRequest(ModelState);
 
-            if (!this._computerFileRepository.ComputerFileExist(computerFile))
+            if (!this._computerFileRepository.ComputerFileExist(ID))
                 return NotFound();
 
             if (!ModelState.IsValid)
@@ -97,6 +97,28 @@ namespace Cerberus.API.Controllers
                 ModelState.AddModelError("", "Something went wrong while updating file");
                 return StatusCode(500, ModelState);
             }
+
+            return NoContent();
+
+        }
+
+        [HttpDelete("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteComputerFile(int ID)
+        {
+
+            var file = this._computerFileRepository.GetComputerFileByID(ID);
+
+            if (file == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!this._computerFileRepository.DeleteComputerFile(file))
+                ModelState.AddModelError("", "Something went wrong deleting file.");
 
             return NoContent();
 

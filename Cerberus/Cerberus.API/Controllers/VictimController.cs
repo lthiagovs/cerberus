@@ -97,20 +97,20 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPut("{victimID}")]
+        [HttpPut("{ID}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
-        public IActionResult UpdateVictim(int victimID, [FromBody]Victim victim)
+        public IActionResult UpdateVictim(int ID, [FromBody]Victim victim)
         {
 
             if (victim == null)
                 return BadRequest(ModelState);
 
-            if (victimID != victim.ID)
+            if (ID != victim.ID)
                 return BadRequest(ModelState);
 
-            if (!this._victimRepository.VictimExist(victimID))
+            if (!this._victimRepository.VictimExist(ID))
                 return NotFound();
 
             if (!ModelState.IsValid)
@@ -124,6 +124,27 @@ namespace Cerberus.API.Controllers
 
             return NoContent();
 
+        }
+
+        [HttpDelete("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult DeleteVictim(int ID)
+        {
+
+            var victim = this._victimRepository.GetVictimByID(ID);
+
+            if (victim == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!this._victimRepository.DeleteVictim(victim))
+                ModelState.AddModelError("", "Something went wrong deleting victim.");
+
+            return NoContent();
         }
 
     }

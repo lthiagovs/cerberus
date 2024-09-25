@@ -114,20 +114,20 @@ namespace Cerberus.API.Controllers
 
 
 
-        [HttpPut("{userID}")]
+        [HttpPut("{ID}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
-        public IActionResult UpdateUser(int userID, [FromBody]User user)
+        public IActionResult UpdateUser(int ID, [FromBody]User user)
         {
 
             if (user == null)
                 return BadRequest(ModelState);
 
-            if (userID != user.ID)
+            if (ID != user.ID)
                 return BadRequest(ModelState);
 
-            if(!this._userRepository.UserExist(userID))
+            if(!this._userRepository.UserExist(ID))
                 return NotFound();
 
             if (!ModelState.IsValid)
@@ -138,6 +138,28 @@ namespace Cerberus.API.Controllers
                 ModelState.AddModelError("", "Something went wrong while updating user");
                 return StatusCode(500, ModelState);
             }
+
+            return NoContent();
+
+        }
+
+        [HttpDelete("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult DeleteUser(int ID)
+        {
+
+            var user = this._userRepository.GetUserByID(ID);
+
+            if (user == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (this._userRepository.DeleteUser(user))
+                ModelState.AddModelError("", "Something went wrong deleting user.");
 
             return NoContent();
 

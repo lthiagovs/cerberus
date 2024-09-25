@@ -95,20 +95,20 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPut("{computerID}")]
+        [HttpPut("{ID}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
-        public IActionResult UpdateComputer(int computerID, [FromBody]Computer computer)
+        public IActionResult UpdateComputer(int ID, [FromBody]Computer computer)
         {
 
             if (computer == null)
                 return BadRequest(ModelState);
 
-            if (computerID != computer.ID)
+            if (ID != computer.ID)
                 return BadRequest(ModelState);
 
-            if (!this._computerRepository.ComputerExist(computerID))
+            if (!this._computerRepository.ComputerExist(ID))
                 return NotFound();
 
             if (!ModelState.IsValid)
@@ -121,6 +121,27 @@ namespace Cerberus.API.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpDelete("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult DeleteComputer(int ID)
+        {
+            var computer = this._computerRepository.GetComputerByID(ID);
+
+            if (computer == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!this._computerRepository.DeleteComputer(computer))
+                ModelState.AddModelError("", "Something went wrong deleting the computer");
+
+            return NoContent();
+
         }
 
 

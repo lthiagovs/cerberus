@@ -13,6 +13,7 @@ namespace Cerberus.API.Interfaces
 
 
         public bool VictimExist(int ID);
+
         public bool CreateVictim(Victim victim);
 
         public bool UpdateVictim(Victim victim);
