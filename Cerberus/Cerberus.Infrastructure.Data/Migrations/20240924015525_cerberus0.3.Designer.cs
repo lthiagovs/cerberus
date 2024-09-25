@@ -26,11 +26,11 @@ namespace Cerberus.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Cerberus.Domain.Models.Machine.Computer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("IP")
                         .IsRequired()
@@ -54,7 +54,7 @@ namespace Cerberus.Infrastructure.Data.Migrations
                     b.Property<int>("VictimID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("VictimID");
 
@@ -89,11 +89,11 @@ namespace Cerberus.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Cerberus.Domain.Models.Machine.ComputerScript", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("tinyint(1)");
@@ -105,7 +105,7 @@ namespace Cerberus.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("ComputerId");
 
@@ -114,11 +114,11 @@ namespace Cerberus.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Cerberus.Domain.Models.Person.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -135,24 +135,24 @@ namespace Cerberus.Infrastructure.Data.Migrations
                     b.Property<byte[]>("ProfilePhoto")
                         .HasColumnType("longblob");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("User");
                 });
 
             modelBuilder.Entity("Cerberus.Domain.Models.Person.Victim", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Victim");
                 });

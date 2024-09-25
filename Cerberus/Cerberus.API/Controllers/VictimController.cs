@@ -107,7 +107,7 @@ namespace Cerberus.API.Controllers
             if (victim == null)
                 return BadRequest(ModelState);
 
-            if (victimID != victim.Id)
+            if (victimID != victim.ID)
                 return BadRequest(ModelState);
 
             if (!this._victimRepository.VictimExist(victimID))

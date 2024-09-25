@@ -9,6 +9,8 @@ namespace Cerberus.API.Interfaces
 
         public ComputerScript? GetComputerScriptByID(int ID);
 
+        public bool ComputerScriptExist(int ID);
+
         public bool CreateComputerScript(ComputerScript computerScript);
 
         public bool UpdateComputerScript(ComputerScript computerScript);

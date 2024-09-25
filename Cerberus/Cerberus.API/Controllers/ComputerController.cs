@@ -105,7 +105,7 @@ namespace Cerberus.API.Controllers
             if (computer == null)
                 return BadRequest(ModelState);
 
-            if (computerID != computer.Id)
+            if (computerID != computer.ID)
                 return BadRequest(ModelState);
 
             if (!this._computerRepository.ComputerExist(computerID))

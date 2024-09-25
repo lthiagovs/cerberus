@@ -124,7 +124,7 @@ namespace Cerberus.API.Controllers
             if (user == null)
                 return BadRequest(ModelState);
 
-            if (userID != user.Id)
+            if (userID != user.ID)
                 return BadRequest(ModelState);
 
             if(!this._userRepository.UserExist(userID))

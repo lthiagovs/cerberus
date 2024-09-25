@@ -14,14 +14,19 @@ namespace Cerberus.API.Repository
             this._context = context;
         }
 
-        public ICollection<ComputerFile> GetComputerFiles(int computerID)
+        public ICollection<ComputerFile> GetComputerFiles(int ID)
         {
-            return this._context.ComputerFile.Where(file => file.ID == computerID).OrderBy(file => file.ID).ToList();
+            return this._context.ComputerFile.Where(file => file.ID == ID).OrderBy(file => file.ID).ToList();
         }
 
         public ComputerFile? GetComputerFileByID(int ID)
         {
             return this._context.ComputerFile.FirstOrDefault(file => file.ID == ID);
+        }
+
+        public bool ComputerFileExist(int ID)
+        {
+            return this._context.ComputerFile.Any(file => file.ID == ID);
         }
 
         public bool CreateComputerFile(ComputerFile computerFile)

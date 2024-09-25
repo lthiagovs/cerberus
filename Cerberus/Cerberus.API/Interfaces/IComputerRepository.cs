@@ -11,6 +11,8 @@ namespace Cerberus.API.Interfaces
 
         public Computer? GetComputerByIP(string IP);
 
+        public bool ComputerExist(int ID);
+
         public bool CreateComputer(Computer computer);
 
         public bool UpdateComputer(Computer computer);

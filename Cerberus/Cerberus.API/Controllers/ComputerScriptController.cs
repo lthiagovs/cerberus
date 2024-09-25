@@ -90,7 +90,7 @@ namespace Cerberus.API.Controllers
             if (computerScript == null)
                 return BadRequest(ModelState);
 
-            if (scriptID != computerScript.Id)
+            if (scriptID != computerScript.ID)
                 return BadRequest(ModelState);
 
             if (this._computerScriptRepository.ScriptExist(computerScript))

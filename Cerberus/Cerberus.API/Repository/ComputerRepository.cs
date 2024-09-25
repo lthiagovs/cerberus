@@ -17,17 +17,22 @@ namespace Cerberus.API.Repository
 
         public ICollection<Computer> GetComputers()
         {
-            return this._context.Computer.OrderBy(computer => computer.Id).ToList();
+            return this._context.Computer.OrderBy(computer => computer.ID).ToList();
         }
 
         public Computer? GetComputerByID(int ID)
         {
-            return this._context.Computer.FirstOrDefault(computer => computer.Id == ID);
+            return this._context.Computer.FirstOrDefault(computer => computer.ID == ID);
         }
 
         public Computer? GetComputerByIP(string IP)
         {
             return this._context.Computer.FirstOrDefault(computer => computer.IP == IP);
+        }
+
+        public bool ComputerExist(int ID)
+        {
+            return this._context.Computer.Any(computer => computer.ID == ID);
         }
 
         public bool CreateComputer(Computer computer)

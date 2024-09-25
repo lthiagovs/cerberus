@@ -38,7 +38,7 @@ namespace Cerberus.Infrastructure.Data.Migrations
                         name: "FK_ComputerFile_Computer_ComputerID",
                         column: x => x.ComputerID,
                         principalTable: "Computer",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -61,7 +61,7 @@ namespace Cerberus.Infrastructure.Data.Migrations
                         name: "FK_ComputerScript_Computer_ComputerId",
                         column: x => x.ComputerId,
                         principalTable: "Computer",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");

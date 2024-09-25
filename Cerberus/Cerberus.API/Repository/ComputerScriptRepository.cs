@@ -16,14 +16,18 @@ namespace Cerberus.API.Repository
 
         public ICollection<ComputerScript> GetComputerScripts()
         {
-            return this._context.ComputerScript.OrderBy(script => script.Id).ToList();  
+            return this._context.ComputerScript.OrderBy(script => script.ID).ToList();  
         }
 
         public ComputerScript? GetComputerScriptByID(int ID)
         {
-            return this._context.ComputerScript.FirstOrDefault(script => script.Id == ID);
+            return this._context.ComputerScript.FirstOrDefault(script => script.ID == ID);
         }
 
+        public bool ComputerScriptExist(int ID)
+        {
+            return this._context.ComputerScript.Any(script => script.ID == ID);
+        }
         public bool CreateComputerScript(ComputerScript computerScript)
         {
             this._context.Add(computerScript);

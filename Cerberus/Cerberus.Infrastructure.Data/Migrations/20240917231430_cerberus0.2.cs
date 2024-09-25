@@ -35,7 +35,7 @@ namespace Cerberus.Infrastructure.Data.Migrations
                         name: "FK_Computer_Victim_VictimID",
                         column: x => x.VictimID,
                         principalTable: "Victim",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
