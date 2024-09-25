@@ -1,6 +1,7 @@
 ﻿using Cerberus.API.Repository;
 using Cerberus.Domain.Models.Machine;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Cerberus.API.Controllers
 {
@@ -61,6 +62,65 @@ namespace Cerberus.API.Controllers
 
             return Ok(computer);
 
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateComputer([FromBody]Computer computer)
+        {
+            if (computer == null)
+                return BadRequest(ModelState);
+
+            var computerVerify = this._computerRepository.GetComputers().Where(cpt => cpt.IP == computer.IP).FirstOrDefault();
+
+            if(computerVerify != null)
+            {
+                ModelState.AddModelError("", "IP already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!this._computerRepository.CreateComputer(computer))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving.");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Sucessfully created");
+
+        }
+
+        [HttpPut("{computerID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        public IActionResult UpdateComputer(int computerID, [FromBody]Computer computer)
+        {
+
+            if (computer == null)
+                return BadRequest(ModelState);
+
+            if (computerID != computer.Id)
+                return BadRequest(ModelState);
+
+            if (!this._computerRepository.ComputerExist(computerID))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(this._computerRepository.UpdateComputer(computer))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating computer.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
 
 

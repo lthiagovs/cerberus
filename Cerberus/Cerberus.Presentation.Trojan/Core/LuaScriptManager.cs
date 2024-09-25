@@ -43,13 +43,24 @@ namespace Cerberus.Presentation.Trojan.Core
             return _services.FirstOrDefault(script => script.Name == scriptName);
         }
 
-        public async Task<LuaService?> StartScript(string scriptName)
+        public async Task<LuaService?> StartScriptAsync(string scriptName)
         {
 
             LuaService? luaService = GetScript(scriptName);
 
             if (luaService != null)
                 await luaService.StartAsync();
+
+            return luaService;
+        }
+
+        public LuaService? StartScript(string scriptName)
+        {
+
+            LuaService? luaService = GetScript(scriptName);
+
+            if (luaService != null)
+                luaService.Start();
 
             return luaService;
         }

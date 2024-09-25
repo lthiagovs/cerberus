@@ -2,6 +2,8 @@
 
 function luaok()
 
-	return "Lua_Ok"
+	while true do
+		print("Lua_Ok")
+	end
 
 end
