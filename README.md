@@ -27,7 +27,6 @@
   - [.NET SDK](https://dotnet.microsoft.com/download) 🌐
   - [MySQL](https://www.mysql.com/) 🗃
   - [Lua](https://www.lua.org/download.html) 📝
-  - [Python 3.x](https://www.python.org/)
 
 ## 🖥 Instalação
 

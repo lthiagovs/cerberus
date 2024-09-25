@@ -2,7 +2,7 @@
 #include "keys.h"
 #include <conio.h>
 
-int getPressedKey() {
+char getPressedKey() {
 	return _getch();
 }
 

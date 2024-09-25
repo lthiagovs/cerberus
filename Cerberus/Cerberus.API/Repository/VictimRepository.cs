@@ -10,23 +10,54 @@ namespace Cerberus.API.Repository
 
         public readonly DataContext _context;
 
-        public ICollection<Victim> GetVictims()
-        {
-            return _context.Victim.OrderBy(victim => victim.Id).ToList();
-        }
-
-        public Victim? GetVictimByIp(string IP)
-        {
-
-            return _context.Victim.Where(victim => victim.IP.Equals(IP)).FirstOrDefault();
-
-        }
-
         public VictimRepository(DataContext context)
         {
             this._context = context;
         }
 
+        public ICollection<Victim> GetVictims()
+        {
+            return this._context.Victim.OrderBy(victim => victim.ID).ToList();
+        }
+        
+        public Victim? GetVictimByID(int ID)
+        {
+            return this._context.Victim.FirstOrDefault(victim => victim.ID == ID);
+        }
+
+        public Victim? GetVictimByName(string Name)
+        {
+            return this._context.Victim.FirstOrDefault(victim => victim.Name == Name);
+        }
+
+        public bool VictimExist(int ID)
+        {
+            return this._context.Victim.Any(victim => victim.ID == ID);
+        }
+
+        public bool CreateVictim(Victim victim)
+        {
+            this._context.Add(victim);
+            return this.Save();
+        }
+
+        public bool UpdateVictim(Victim victim)
+        {
+            this._context.Update(victim);
+            return this.Save();
+        }
+
+        public bool DeleteVictim(Victim victim)
+        {
+            this._context.Remove(victim);
+            return this.Save();
+        }
+
+        public bool Save()
+        {
+            var saved = this._context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
 
     }
 }

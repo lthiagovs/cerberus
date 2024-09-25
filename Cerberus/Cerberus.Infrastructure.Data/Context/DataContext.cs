@@ -6,10 +6,6 @@ namespace Cerberus.Infrastructure.Data.Context
     public class DataContext : DbContext
     {
 
-        public DbSet<Victim> Victim { get; set; }
-
-        public DbSet<Computer> Computer {  get; set; }
-
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
@@ -19,6 +15,17 @@ namespace Cerberus.Infrastructure.Data.Context
             base.OnModelCreating(modelBuilder);
 
         }
+
+        public DbSet<Victim> Victim { get; set; }
+
+        public DbSet<Computer> Computer { get; set; }
+
+        public DbSet<ComputerFile> ComputerFile {  get; set; }
+
+        public DbSet<ComputerScript> ComputerScript {  get; set; }
+
+        public DbSet<User> User { get; set; }
+
     }
 
 }
