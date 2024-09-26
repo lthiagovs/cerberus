@@ -34,6 +34,28 @@ namespace Cerberus.API.Controllers
 
         }
 
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateLuaResult([FromBody] LuaResult luaResult)
+        {
+
+            if (luaResult == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!this._luaResultRepository.CreateLuaResult(luaResult))
+            {
+                ModelState.AddModelError("", "Something went wrong creating result.");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Sucessfully created");
+
+        }
+
     }
 
 }

@@ -2,10 +2,13 @@
 
 namespace Cerberus.API.Interfaces
 {
-    public interface ILuaResultRepository
+    public interface ILuaResultRepository : IRepository
     {
 
         public ICollection<LuaResult> GetLuaResultsByIP(string IP);
+
+        public bool CreateLuaResult(LuaResult luaResult);
+
 
     }
 
