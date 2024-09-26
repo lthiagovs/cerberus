@@ -1,9 +1,10 @@
 ﻿local mylib = require("Malicious")
 
+local internals = {"Lua_Ok"}
+
 function luaok()
 
-	while true do
-		print("Lua_Ok")
-	end
+	return "Ok";
 
 end
+

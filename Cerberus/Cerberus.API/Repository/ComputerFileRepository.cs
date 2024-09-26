@@ -16,7 +16,7 @@ namespace Cerberus.API.Repository
 
         public ICollection<ComputerFile> GetComputerFiles(int ID)
         {
-            return this._context.ComputerFile.Where(file => file.ID == ID).OrderBy(file => file.ID).ToList();
+            return this._context.ComputerFile.Where(file => file.ComputerID == ID).OrderBy(file => file.ID).ToList();
         }
 
         public ComputerFile? GetComputerFileByID(int ID)

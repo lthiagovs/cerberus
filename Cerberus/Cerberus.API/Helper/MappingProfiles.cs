@@ -9,7 +9,7 @@ namespace Cerberus.API.Helper
 
         public MappingProfiles()
         {
-            CreateMap<Computer, ComputerDto>();
+            //CreateMap<Computer, ComputerDto>();
 
         }
 

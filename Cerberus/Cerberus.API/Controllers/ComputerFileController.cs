@@ -1,6 +1,6 @@
-﻿using Cerberus.API.Repository;
+﻿using Cerberus.API.Interfaces;
+using Cerberus.API.Repository;
 using Cerberus.Domain.Models.Machine;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cerberus.API.Controllers
@@ -11,19 +11,19 @@ namespace Cerberus.API.Controllers
     public class ComputerFileController : Controller
     {
         
-        private readonly ComputerFileRepository _computerFileRepository;
+        private readonly IComputerFileRepository _computerFileRepository;
 
-        public ComputerFileController(ComputerFileRepository computerFileRepository)
+        public ComputerFileController(IComputerFileRepository computerFileRepository)
         {
             this._computerFileRepository = computerFileRepository;
         }
 
-        [HttpGet()]
+        [HttpGet("Computer")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ComputerFile>))]
-        public IActionResult GetComputerFiles(int computerID)
+        public IActionResult GetComputerFiles([FromQuery] int ID)
         {
 
-            var files = this._computerFileRepository.GetComputerFiles(computerID);
+            var files = this._computerFileRepository.GetComputerFiles(ID);
 
             if(!ModelState.IsValid)
             {
