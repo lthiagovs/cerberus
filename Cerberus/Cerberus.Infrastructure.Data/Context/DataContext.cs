@@ -1,5 +1,6 @@
 ﻿using Cerberus.Domain.Models.Machine;
 using Cerberus.Domain.Models.Person;
+using Cerberus.Domain.Models.Script;
 using Microsoft.EntityFrameworkCore;
 namespace Cerberus.Infrastructure.Data.Context
 {
@@ -25,6 +26,8 @@ namespace Cerberus.Infrastructure.Data.Context
         public DbSet<ComputerScript> ComputerScript {  get; set; }
 
         public DbSet<User> User { get; set; }
+
+        public DbSet<LuaResult> LuaResult { get; set; }
 
     }
 

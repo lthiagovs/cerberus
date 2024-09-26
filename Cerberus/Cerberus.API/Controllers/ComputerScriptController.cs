@@ -1,4 +1,4 @@
-﻿using Cerberus.API.Repository;
+﻿using Cerberus.API.Interfaces;
 using Cerberus.Domain.Models.Machine;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +10,9 @@ namespace Cerberus.API.Controllers
     public class ComputerScriptController : Controller
     {
 
-        private readonly ComputerScriptRepository _computerScriptRepository;
+        private readonly IComputerScriptRepository _computerScriptRepository;
 
-        public ComputerScriptController(ComputerScriptRepository computerScriptRepository)
+        public ComputerScriptController(IComputerScriptRepository computerScriptRepository)
         {
             this._computerScriptRepository = computerScriptRepository;
         }
@@ -93,7 +93,7 @@ namespace Cerberus.API.Controllers
             if (ID != computerScript.ID)
                 return BadRequest(ModelState);
 
-            if (this._computerScriptRepository.ComputerScriptExist(ID))
+            if (!this._computerScriptRepository.ComputerScriptExist(ID))
                 return NotFound();
 
             if (!ModelState.IsValid)

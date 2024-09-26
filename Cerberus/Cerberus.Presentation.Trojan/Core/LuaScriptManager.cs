@@ -1,5 +1,6 @@
 ﻿using Cerberus.Presentation.Trojan.Helper;
 using NLua;
+using System.Security;
 
 namespace Cerberus.Presentation.Trojan.Core
 {
