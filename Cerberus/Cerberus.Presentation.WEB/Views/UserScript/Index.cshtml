@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    h2 {
+        margin-bottom: 30px;
+    }
+
+    .info-card {
+        border: 1px solid #17a2b8; /* Light color */
+        border-radius: 8px;
+        background-color: #2c2c2c;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+    }
+
+        .info-card:hover {
+            transform: scale(1.02);
+        }
+
+    .table-header {
+        background-color: #17a2b8; /* Light color */
+        color: #fff;
+    }
+
+    .btn-danger {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+        .btn-danger:hover {
+            background-color: #dc3545;
+            transform: scale(1.05);
+        }
+
+    .script-info {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="text-light text-center">My Scripts</h2>
+
+    <div class="info-card text-light">
+        <div class="search-bar">
+            <input type="text" class="form-control" placeholder="Search scripts..." style="width: 300px;">
+            <div>
+                <button class="btn btn-success">Search</button>
+                <button class="btn btn-light ml-2">Add New Script</button> <!-- Changed to light -->
+            </div>
+        </div>
+
+        <table class="table table-dark mt-4">
+            <thead class="table-header">
+                <tr>
+                    <th>Script Name</th>
+                    <th>Consumed DLL</th>
+                    <th>Creator</th>
+                    <th>Creation Date</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monitoring Script</td>
+                    <td>monitor.dll</td>
+                    <td>User A</td>
+                    <td>09/01/2024</td>
+                    <td>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Test Script</td>
+                    <td>test.dll</td>
+                    <td>User B</td>
+                    <td>09/05/2024</td>
+                    <td>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Injection Script</td>
+                    <td>injecao.dll</td>
+                    <td>User C</td>
+                    <td>09/10/2024</td>
+                    <td>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Remote Execution Script</td>
+                    <td>exec.remota.dll</td>
+                    <td>User D</td>
+                    <td>09/12/2024</td>
+                    <td>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Log Script</td>
+                    <td>log.dll</td>
+                    <td>User E</td>
+                    <td>09/15/2024</td>
+                    <td>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="script-info">
+            <p>You have a total of <strong>5 scripts</strong> registered. Use the action buttons to manage your scripts.</p>
+        </div>
+    </div>
+</div>
