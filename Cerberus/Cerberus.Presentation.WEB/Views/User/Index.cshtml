@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .profile-card, .devices-card, .infected-card {
+        border: 1px solid #e0e0e0; /* Light border */
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: #2c2c2c;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .profile-card:hover, .devices-card:hover, .infected-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+    .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .info-container {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center align items */
+        margin-bottom: 10px;
+    }
+
+    .info-text {
+        text-align: center; /* Center align text */
+        color: #f0f0f0;
+    }
+
+    .map-container {
+        height: 400px;
+        border: 1px solid #e0e0e0; /* Light border */
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+        .map-container:hover {
+            transform: scale(1.02);
+        }
+
+    footer {
+        background: linear-gradient(135deg, #000, #333);
+    }
+
+    .social-links a {
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+    /* Adding fade-in animation */
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @@keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="profile-card text-light text-center fade-in">
+        <h1 class="text-light">User</h1>
+        <div class="info-container mb-4">
+            <img src="usuario-foto.jpg" alt="User Photo" class="profile-img">
+            <div class="info-text">
+                <h3>John Silva</h3>
+                <p><strong>Email:</strong> john.silva@email.com</p>
+                <p><strong>Creation Date:</strong> 01/01/2022</p>
+                <p><strong>Remaining Time:</strong> 30 days</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="#" class="btn btn-warning mx-1">Edit</a>
+            <a href="#" class="btn btn-danger mx-1">Logout</a>
+        </div>
+    </div>
+</div>
+
+<!-- Devices Div -->
+<div class="devices-card text-light fade-in">
+    <h2 class="text-center text-light">My Devices</h2>
+    <table class="table table-dark mt-4">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>IP</th>
+                <th>Status</th>
+                <th>Access</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>LINUX</td>
+                <td>Server 1</td>
+                <td>192.168.1.10</td>
+                <td>Active</td>
+                <td><button class="btn btn-success">Access</button></td>
+            </tr>
+            <tr>
+                <td>WINDOWS</td>
+                <td>PC John</td>
+                <td>192.168.1.20</td>
+                <td>Inactive</td>
+                <td><button class="btn btn-warning">Access</button></td>
+            </tr>
+            <tr>
+                <td>ANDROID</td>
+                <td>Mobile</td>
+                <td>192.168.1.30</td>
+                <td>Active</td>
+                <td><button class="btn btn-success">Access</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Infected Div -->
+<div class="infected-card text-light fade-in">
+    <h2 class="text-center text-light">Infected</h2>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345098695!2d144.95373531531554!3d-37.816279979751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0b1f1f29%3A0xf6a0acb7c3e37e2c!2sFederation%20Square!5e0!3m2!1spt-BR!2sbr!4v1625879051220!5m2!1spt-BR!2sbr"
+                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+</div>
