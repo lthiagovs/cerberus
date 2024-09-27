@@ -3,147 +3,94 @@
 }
 
 <style>
-    /* styles.css */
+    .text-light {
+        color: #e0e0e0 !important; /* Darkened the light text color */
+    }
 
-/* Reset básico para margin e padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    .text-primary {
+        color: #007bff !important;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    color: #00ff00; /* Verde brilhante */
-    background-color: #000; /* Preto */
-}
+    /* Specific style for the login screen */
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Darkened shadow */
+        background-color: #2b2b2b; /* Dark background for card */
+    }
 
-/* Navbar e footer (já fornecidos anteriormente) */
-header {
-    background-color: #111; /* Um tom mais escuro de preto */
-}
+    .form-control {
+        background-color: #333; /* Darker background for inputs */
+        color: #fff; /* White text for inputs */
+        border: 1px solid #444; /* Slightly lighter border */
+    }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 2px solid #00ff00; /* Linha verde brilhante */
-}
+        .form-control::placeholder {
+            color: #bbb; /* Placeholder color */
+        }
 
-.navbar .logo {
-    font-size: 1.5rem;
-    color: #00ff00; /* Verde brilhante */
-    text-decoration: none;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-    animation: pulse 1.5s infinite;
-}
+    .btn-primary {
+        background-color: #007bff; /* Button background */
+        border-color: #007bff; /* Button border */
+    }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-}
-
-.nav-links li {
-    margin-left: 1rem;
-}
-
-.nav-links a {
-    color: #00ff00; /* Verde brilhante */
-    text-decoration: none;
-    font-size: 1rem;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-    animation: pulse 1.5s infinite;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-}
-
-footer {
-    background-color: #111; /* Um tom mais escuro de preto */
-    padding: 1rem;
-    text-align: center;
-    border-top: 2px solid #00ff00; /* Linha verde brilhante */
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-    animation: pulse 1.5s infinite;
-}
-
-/* Estilos para a página de login */
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 80px); /* Ajusta a altura para o footer fixo */
-    background-color: #000; /* Preto */
-}
-
-.login-container {
-    background-color: #222; /* Um tom escuro de cinza */
-    padding: 2rem;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Sombra verde */
-}
-
-.login-container h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-    animation: pulse 1.5s infinite;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-}
-
-input {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #00ff00; /* Verde brilhante */
-    border-radius: 4px;
-    background-color: #333; /* Um tom mais claro que o fundo */
-    color: #00ff00; /* Verde brilhante */
-}
-
-button {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #00ff00; /* Verde brilhante */
-    color: #000; /* Preto */
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #00cc00; /* Verde mais escuro para o efeito hover */
-}
-
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker on hover */
+            border-color: #004085; /* Darker border on hover */
+        }
 </style>
 
-<div class="login-container">
-    <h1>Login</h1>
-    <form action="#" method="post">
-        <label for="username">Nome de Usuário</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit"><a href="@Url.Action("Index", "Cerberus")">Entrar</a></button>
-    </form>
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="card text-light" style="width: 400px;">
+        <div class="card-header text-center">
+            <ul class="nav nav-tabs card-header-tabs" id="login-register-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#register">Register</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body tab-content">
+            <div class="tab-pane fade show active" id="login">
+                <form>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="#" class="text-light">Forgot password?</a>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="register">
+                <form>
+                    <div class="form-group">
+                        <label for="newEmail">E-mail</label>
+                        <input type="email" class="form-control" id="newEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Password</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <button class="btn btn-primary btn-block">
+                        <a class="nav-link" href="@Url.Action("Index", "User")">Register</a>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

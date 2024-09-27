@@ -1,7 +1,6 @@
-﻿using Cerberus.API.Repository;
+﻿using Cerberus.API.Interfaces;
 using Cerberus.Domain.Models.Machine;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Cerberus.API.Controllers
 {
@@ -10,11 +9,11 @@ namespace Cerberus.API.Controllers
     public class ComputerController : Controller
     {
 
-        private readonly ComputerRepository _computerRepository;
+        private readonly IComputerRepository _computerRepository;
 
-        public ComputerController(ComputerRepository computerRepository)
+        public ComputerController(IComputerRepository computerRepository)
         {
-            _computerRepository = computerRepository;
+            this._computerRepository = computerRepository;
         }
 
         [HttpGet]
@@ -32,7 +31,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{ID}")]
+        [HttpGet("{ID:int}")]
         [ProducesResponseType(200, Type = typeof(Computer))]
         public IActionResult GetComputerByID(int ID)
         {
@@ -114,7 +113,7 @@ namespace Cerberus.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if(this._computerRepository.UpdateComputer(computer))
+            if(!this._computerRepository.UpdateComputer(computer))
             {
                 ModelState.AddModelError("", "Something went wrong while updating computer.");
                 return StatusCode(500, ModelState);

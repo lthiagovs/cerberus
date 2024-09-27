@@ -12,8 +12,10 @@ public class Program
         LuaScriptManager _scriptManager = new LuaScriptManager();
         _scriptManager.LoadScripts();
 
-        _ = _scriptManager.StartScriptAsync("luaok");
-        _ = await _scriptManager.StartScriptAsync("keylogger");
+        _scriptManager.StartScript("luaok");
+
+        //_ = _scriptManager.StartScriptAsync("luaok");
+        //_ = await _scriptManager.StartScriptAsync("keylogger");
 
     }
 }

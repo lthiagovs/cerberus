@@ -9,11 +9,12 @@ namespace Cerberus.Presentation.Trojan.Core
     {
          
         public string Name { get; set;}
-        public bool LoopScript {  get; set;}
+        public bool LoopScript { get; set;}
 
         private readonly Lua _lua;
         private Task<object[]>? _luaTask;
         private CancellationTokenSource? _luaToken;
+        public string? Value { get; set;}
 
 
         private string? Result {  get; set; }
@@ -50,7 +51,7 @@ namespace Cerberus.Presentation.Trojan.Core
             {
                 this._luaTask.Start();
                 object[] result = this._luaTask.Result;
-                Send(JsonConvert.SerializeObject(result));
+                Send();
                 if (this.LoopScript)
                 {
                     Init();
@@ -67,7 +68,8 @@ namespace Cerberus.Presentation.Trojan.Core
             {
                 this._luaTask.Start();
                 object[] result = await this._luaTask;
-                Send(JsonConvert.SerializeObject(result));
+                Send();
+                //Send(JsonConvert.SerializeObject(result));
                 if (this.LoopScript)
                 {
                     Init();
@@ -78,10 +80,9 @@ namespace Cerberus.Presentation.Trojan.Core
 
         }
 
-        public void Send(string result) 
+        public void Send() 
         {
-
-            Console.WriteLine("Sending: " + result);
+            
         }
 
         public void Stop()

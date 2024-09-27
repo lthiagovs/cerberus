@@ -1,4 +1,4 @@
-﻿using Cerberus.API.Repository;
+﻿using Cerberus.API.Interfaces;
 using Cerberus.Domain.Models.Person;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +10,9 @@ namespace Cerberus.API.Controllers
     public class UserController : Controller
     {
 
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(UserRepository userRepository)
+        public UserController(IUserRepository userRepository)
         {
             this._userRepository = userRepository;
         }
@@ -33,7 +33,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{ID}")]
+        [HttpGet("{ID:int}")]
         [ProducesResponseType(200, Type = typeof(User))]
         public IActionResult GetUserByID(int ID)
         {
@@ -65,9 +65,9 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{Login}")]
+        [HttpGet("Login")]
         [ProducesResponseType(200, Type = typeof(User))]
-        public IActionResult GetUserByLogin(string Email, string Password)
+        public IActionResult GetUserByLogin([FromQuery]string Email, [FromQuery] string Password)
         {
             var user = this._userRepository.GetUserByLogin(Email, Password);
 

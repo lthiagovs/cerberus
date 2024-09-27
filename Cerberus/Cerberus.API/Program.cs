@@ -22,6 +22,7 @@ builder.Services.AddScoped<IComputerFileRepository, ComputerFileRepository>();
 builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IComputerScriptRepository, ComputerScriptRepository>();
+builder.Services.AddScoped<ILuaResultRepository, LuaResultRepository>();
 #endregion
 
 builder.Services.AddEndpointsApiExplorer();
