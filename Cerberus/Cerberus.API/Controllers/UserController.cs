@@ -1,5 +1,4 @@
 ﻿using Cerberus.API.Interfaces;
-using Cerberus.API.Repository;
 using Cerberus.Domain.Models.Person;
 using Microsoft.AspNetCore.Mvc;
 

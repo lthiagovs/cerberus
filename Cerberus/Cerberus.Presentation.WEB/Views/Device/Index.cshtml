@@ -1,394 +1,113 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página do Computador";
 }
 
 <style>
-    /* Reset básico para margin e padding */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     body {
-        font-family: Arial, sans-serif;
-        background-color: #000; /* Preto */
-        color: #00ff00; /* Verde brilhante */
-    }
-
-    /* Container principal */
-    .container {
-        padding: 2rem;
-    }
-
-    /* Informações sobre o Dispositivo */
-    .device-info {
         background-color: #222;
+        color: #00ff00; /* Verde brilhante */
+        font-family: Arial, sans-serif;
+    }
+
+    .computer-info {
+        background-color: #333;
         padding: 1.5rem;
         border-radius: 8px;
         margin-bottom: 1.5rem;
     }
 
-        .device-info h1 {
-            margin-bottom: 1rem;
-        }
-
-    /* Texto acima das caixas */
-    .box-label {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Caixa Vazia */
-    .drop-box, .source-box {
-        background-color: #333;
-        border-radius: 8px;
-        min-height: 300px;
-        margin-bottom: 1.5rem;
-        position: relative;
-    }
-
-    .drop-box {
-        border: 2px dashed #00ff00; /* Verde brilhante */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .source-box {
-        border: 2px dashed #ff0000; /* Vermelho para distinguir */
-        display: flex;
-        flex-direction: row; /* Garante que os ícones fiquem em linha horizontal */
-        flex-wrap: wrap; /* Permite que os ícones se movam para a próxima linha se necessário */
-        justify-content: center; /* Centraliza os ícones horizontalmente */
-        align-items: center; /* Alinha os ícones verticalmente no centro */
-    }
-
-    .icons {
-        display: flex;
-        flex-direction: row; /* Garante que os ícones fiquem em linha horizontal */
-        flex-wrap: wrap; /* Permite que os ícones se movam para a próxima linha se necessário */
-        justify-content: center; /* Centraliza os ícones horizontalmente */
-    }
-
-    /* Efeitos nos ícones */
-    .icon.bright {
-        box-shadow: 0 0 15px #00ff00; /* Brilho verde */
-    }
-
-    .icon {
-        background-color: #222;
-        padding: 1rem;
-        border-radius: 8px;
-        border: 2px solid #00ff00; /* Verde brilhante */
-        width: 120px;
-        text-align: center;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-        .icon div {
-            font-size: 3rem; /* Tamanho maior para os emojis */
-        }
-
-        .icon p {
-            margin-top: 0.5rem;
-            font-size: 1rem;
-        }
-
-    /* Tabela de Scripts */
     .scripts-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-        .scripts-table th, .scripts-table td {
-            border: 1px solid #00ff00;
-            padding: 0.5rem;
-            text-align: center;
-        }
-
-        .scripts-table th {
-            background-color: #444;
-        }
-
-        .scripts-table button {
-            background-color: #00ff00;
-            border: none;
-            color: #000;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-            .scripts-table button:hover {
-                background-color: #00cc00;
-            }
-</style>
-<style>
-    /* Estilos da Modal */
-    .modal {
-        display: none; /* Oculta a modal por padrão */
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com transparência */
-    }
-
-    .modal-content {
-        background-color: #222;
-        margin: 10% auto; /* Ajusta o espaço superior e inferior para aumentar a altura */
-        padding: 30px; /* Aumenta o espaço interno */
-        border: 1px solid #00ff00;
+        background-color: #333;
+        padding: 1.5rem;
         border-radius: 8px;
-        width: 90%; /* Largura da modal */
-        max-width: 800px; /* Largura máxima da modal */
-        max-height: 90vh; /* Aumenta a altura máxima da modal */
-        overflow-y: auto; /* Rolagem vertical automática se necessário */
+        margin-bottom: 1.5rem;
     }
 
-    .close {
-        color: #00ff00;
-        float: right;
-        font-size: 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-        .close:hover,
-        .close:focus {
-            color: #00cc00;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-    .modal-table {
+    table {
         width: 100%;
         border-collapse: collapse;
     }
 
-        .modal-table th, .modal-table td {
-            border: 1px solid #00ff00;
-            padding: 0.5rem;
-            text-align: center;
+    th, td {
+        padding: 0.75rem;
+        border: 1px solid #444;
+        text-align: left;
+    }
+
+    th {
+        background-color: #111;
+        color: #00ff00; /* Verde brilhante */
+    }
+
+    td {
+        color: #00ff00; /* Verde brilhante */
+    }
+
+    tr:nth-child(even) {
+        background-color: #444;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #333;
+    }
+
+    .btn-access {
+        background-color: #00ff00; /* Verde brilhante */
+        color: #222;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-access:hover {
+            background-color: #00cc00; /* Verde um pouco mais escuro */
         }
 
-        .modal-table th {
-            background-color: #444;
-        }
+    #canvas {
+        background-color: #000; /* Fundo preto */
+        border-radius: 8px;
+        height: 400px; /* Ajuste a altura conforme necessário */
+        width: 100%; /* Largura total */
+        margin-top: 1.5rem;
+    }
 </style>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Detalhes do Script</h2>
-        <table class="modal-table">
+<main>
+    <div class="computer-info">
+        <h1>Informações do Computador</h1>
+        <p>Nome: Computador do Usuário</p>
+        <p>IP: 192.168.1.100</p>
+        <p>MAC: 00:1A:2B:3C:4D:5F</p>
+        <p>Status: Online</p>
+    </div>
+
+    <div class="scripts-table">
+        <h2>Scripts Disponíveis</h2>
+        <table>
             <thead>
                 <tr>
-                    <th>Campo</th>
-                    <th>Valor</th>
+                    <th>Nome do Script</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
-            <tbody id="modal-table-body">
-                <!-- Linhas adicionadas dinamicamente -->
+            <tbody>
+                <tr>
+                    <td>Script 1</td>
+                    <td><button class="btn-access">Acessar</button></td>
+                </tr>
+                <tr>
+                    <td>Script 2</td>
+                    <td><button class="btn-access">Acessar</button></td>
+                </tr>
+                <tr>
+                    <td>Script 3</td>
+                    <td><button class="btn-access">Acessar</button></td>
+                </tr>
             </tbody>
         </table>
     </div>
-</div>
 
-<div class="container">
-    <!-- Informações sobre o Dispositivo -->
-    <div class="device-info">
-        <h1>Informações do Dispositivo</h1>
-        <p>Tipo: Laptop</p>
-        <p>Sistema Operacional: Windows 10</p>
-        <p>Memória: 16GB</p>
-        <p>Armazenamento: 512GB SSD</p>
-    </div>
-
-    <!-- Texto acima da caixa de destino -->
-    <div class="box-label">Scripts em execução</div>
-    <div class="drop-box" id="drop-box">
-        <!-- Caixa Vazia -->
-    </div>
-
-    <!-- Texto acima da caixa de origem -->
-    <div class="box-label">Scripts desligados</div>
-    <div class="source-box" id="source-box">
-        <!-- Ícones Arrastáveis -->
-        <div class="icons">
-            <div class="icon" id="icon1" draggable="true">
-                <div>💻</div>
-                <p>Ícone 1</p>
-            </div>
-            <div class="icon" id="icon2" draggable="true">
-                <div>📱</div>
-                <p>Ícone 2</p>
-            </div>
-            <div class="icon" id="icon3" draggable="true">
-                <div>🖨️</div>
-                <p>Ícone 3</p>
-            </div>
-            <div class="icon" id="icon4" draggable="true">
-                <div>⏹️</div>
-                <p>Desligar</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tabela de Scripts -->
-    <table class="scripts-table" id="scripts-table">
-        <thead>
-            <tr>
-                <th>Script</th>
-                <th>Dados</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Linhas adicionadas dinamicamente -->
-        </tbody>
-    </table>
-</div>
-
-<script>
-    // Função para iniciar o arrastar
-    function dragStart(event) {
-        event.dataTransfer.setData('text/plain', event.target.id);
-    }
-
-    // Função para permitir o arrastar
-    function allowDrop(event) {
-        event.preventDefault();
-    }
-
-    // Função para lidar com o soltar
-    function drop(event) {
-        event.preventDefault();
-        const id = event.dataTransfer.getData('text/plain');
-        const draggableElement = document.getElementById(id);
-        const dropBox = document.getElementById('drop-box');
-        const sourceBox = document.getElementById('source-box');
-        const table = document.getElementById('scripts-table').getElementsByTagName('tbody')[0];
-
-        if (event.target.id === 'drop-box' || event.target === dropBox) {
-            dropBox.appendChild(draggableElement);
-            draggableElement.classList.add('bright');
-
-            // Adiciona linha na tabela se não existir
-            if (!table.querySelector(`tr[data-id="${id}"]`)) {
-                const row = table.insertRow();
-                row.setAttribute('data-id', id);
-                row.innerHTML = `
-                    <td>${draggableElement.querySelector('p').textContent}</td>
-                    <td><button onclick="showModal('${draggableElement.querySelector('p').textContent}')">Observar</button></td>
-                     `;
-            }
-        } else if (event.target.id === 'source-box' || event.target === sourceBox) {
-            sourceBox.appendChild(draggableElement);
-            draggableElement.classList.remove('bright');
-
-            // Remove linha da tabela se o ícone for removido
-            const row = table.querySelector(`tr[data-id="${id}"]`);
-            if (row) {
-                row.remove();
-            }
-        }
-
-        draggableElement.style.position = 'relative';
-        draggableElement.style.left = '0';
-        draggableElement.style.top = '0';
-    }
-
-    // Função para remover a linha da tabela
-    function removeRow(button) {
-        const row = button.parentElement.parentElement;
-        const iconId = row.getAttribute('data-id');
-        row.remove();
-        const icon = document.getElementById(iconId);
-        if (icon) {
-            document.getElementById('source-box').appendChild(icon);
-            icon.classList.remove('bright');
-        }
-    }
-
-    // Adiciona eventos aos ícones
-    const icons = document.querySelectorAll('.icon');
-    icons.forEach(icon => {
-        icon.addEventListener('dragstart', dragStart);
-    });
-
-    // Adiciona eventos às caixas de destino
-    const dropBox = document.getElementById('drop-box');
-    const sourceBox = document.getElementById('source-box');
-    dropBox.addEventListener('dragover', allowDrop);
-    dropBox.addEventListener('drop', drop);
-    sourceBox.addEventListener('dragover', allowDrop);
-    sourceBox.addEventListener('drop', drop);
-</script>
-<script>
-    function showModal(scriptName) {
-        const modal = document.getElementById('myModal');
-        const tableBody = document.getElementById('modal-table-body');
-
-        // Limpar a tabela existente
-        tableBody.innerHTML = '';
-
-        // Adicionar dados à tabela
-        const rows = [
-            { field: 'Nome do Script', value: scriptName },
-            { field: 'Descrição', value: 'Descrição detalhada do script aqui' },
-            { field: 'Nome do Script', value: scriptName },
-            { field: 'Descrição', value: 'Descrição detalhada do script aqui' },
-            { field: 'Nome do Script', value: scriptName },
-            { field: 'Descrição', value: 'Descrição detalhada do script aqui' },
-            { field: 'Nome do Script', value: scriptName },
-            { field: 'Descrição', value: 'Descrição detalhada do script aqui' },
-            { field: 'Nome do Script', value: scriptName },
-            { field: 'Descrição', value: 'Descrição detalhada do script aqui' },
-            { field: 'Nome do Script', value: scriptName },
-            { field: 'Descrição', value: 'Descrição detalhada do script aqui' },
-            // Adicione mais linhas conforme necessário
-        ];
-
-        rows.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${row.field}</td>
-                <td>${row.value}</td>
-            `;
-            tableBody.appendChild(tr);
-        });
-
-        // Exibir a modal
-        modal.style.display = 'block';
-    }
-
-    // Função para fechar a modal
-    function closeModal() {
-        const modal = document.getElementById('myModal');
-        modal.style.display = 'none';
-    }
-
-    // Adicionar evento de clique para o botão de fechar
-    document.querySelector('.close').addEventListener('click', closeModal);
-
-    // Adicionar eventos aos botões da tabela
-    function addEventListenersToButtons() {
-        document.querySelectorAll('.scripts-table button').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const scriptName = event.target.closest('tr').querySelector('td').textContent;
-                showModal(scriptName);
-            });
-        });
-    }
-
-    // Inicializa eventos
-    addEventListenersToButtons();
-</script>
+    <div id="canvas"></div>
+</main>

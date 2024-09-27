@@ -1,116 +1,63 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Cerberus.Presentation.WEB</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Cerberus.Presentation.WEB.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <title>@ViewBag.Title - Cerberus.NET</title>
 </head>
 <body>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            color: #00ff00; /* Verde brilhante */
-            background-color: #000; /* Preto */
-        }
-
-        header {
-            background-color: #111; /* Um tom mais escuro de preto */
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 2px solid #00ff00; /* Linha verde brilhante */
-        }
-
-        .navbar .logo {
-            font-size: 1.5rem;
-            color: #00ff00; /* Verde brilhante */
-            text-decoration: none;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 1rem;
-        }
-
-        .nav-links a {
-            color: #00ff00; /* Verde brilhante */
-            text-decoration: none;
-            font-size: 1rem;
-        }
-
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-
-        .navbar .logo, .nav-links a, footer p {
-            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-        }
-
-        footer {
-            background-color: #111; /* Um tom mais escuro de preto */
-            padding: 1rem;
-            text-align: center;
-            border-top: 2px solid #00ff00; /* Linha verde brilhante */
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            left: 0;
-        }
-
-        footer p {
-            color: #00ff00; /* Verde brilhante */
-        }
-    </style>
-
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="#" class="logo">CERBERUS.NET</a>
-                <ul class="nav-links">
-                    <li><a href="@Url.Action("Index", "Home")">Início</a></li>
-                    <li><a href="@Url.Action("Index", "Login")">Area do Cliente</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="~/img/LOGO.png" alt="Logo">
+            Cerberus.NET
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Login")">Join</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Download")">Downloads</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Documentation")">Documentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "About")">About</a>
+                </li>
+            </ul>
+            <div class="navbar-nav ml-auto d-flex align-items-center">
+                <img src="https://via.placeholder.com/40" alt="Perfil do Usuário" class="rounded-circle profile-img">
+                <span class="ml-2 text-light">USER</span>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-
+    <!-- Conteúdo específico da página -->
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
-    <footer>
-        <div class="container">
-            <p></p>
-        </div>
+    <footer class="bg-dark text-light text-center p-4 mt-5">
+        <p>Follow us:</p>
+        <a href="#" class="text-light">Facebook</a> |
+        <a href="#" class="text-light">Twitter</a> |
+        <a href="#" class="text-light">Instagram</a>
+        <p>Contatos: contato@cerberus.net</p>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/js/scripts.js"></script>
 </body>
 </html>
