@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .doc-section {
+        padding: 40px 0;
+        color: #f0f0f0;
+    }
+
+    .nav-list {
+        border-right: 1px solid #007bff;
+        padding-right: 10px;
+        max-width: 200px; /* Reducing the width of the list */
+        overflow-y: auto; /* Adding vertical scrolling */
+        height: 400px; /* Setting maximum height */
+    }
+
+        .nav-list a {
+            color: #f0f0f0;
+            transition: color 0.3s;
+        }
+
+            .nav-list a:hover {
+                color: #007bff;
+            }
+
+    .content-section {
+        padding-left: 20px;
+    }
+</style>
+
+<div class="container doc-section">
+    <h2 class="text-light text-center">Cerberus.NET Documentation</h2>
+    <p class="text-center text-light">Welcome to the Cerberus.NET documentation. Here you will find information about the API, the Trojan, the web interface, and the models used in the project.</p>
+    <p class="text-center text-light">
+        <a href="https://github.com/your_username/your_repository" target="_blank" class="btn btn-outline-light">View on GitHub</a>
+    </p>
+
+    <div class="row mt-4">
+        <div class="col-md-3 nav-list">
+            <h5 class="text-light">Contents</h5>
+            <ul class="list-unstyled">
+                <li><a href="#api" onclick="showContent('api')">API</a></li>
+                <li><a href="#trojan" onclick="showContent('trojan')">Trojan</a></li>
+                <li><a href="#web" onclick="showContent('web')">Web</a></li>
+                <li><a href="#models" onclick="showContent('models')">Models</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 content-section">
+            <h5 id="api" class="text-primary">API</h5>
+            <p class="text-light">Click the links on the left to see more details.</p>
+            <div id="content" class="text-light">
+                <p>Example of using the API:</p>
+                <pre> GET /api/devices - Retrieves the list of devices </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showContent(section) {
+        const content = {
+            api: "The Cerberus.NET API allows programmatic interaction with the platform.",
+            trojan: "The Cerberus Trojan is the core component of our software.",
+            web: "The web interface of Cerberus.NET is intuitive and easy to use.",
+            models: "The data models used by Cerberus.NET are important for structuring."
+        };
+
+        document.getElementById("content").innerHTML = `<p>${content[section]}</p>`;
+    }
+</script>

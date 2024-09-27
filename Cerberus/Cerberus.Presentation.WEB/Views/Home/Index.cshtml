@@ -1,8 +1,53 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Home";
+    var x = 2;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section text-center text-light" id="hero">
+    <div class="overlay"></div>
+    <div class="hero-content" id="hero-content">
+        <div class="hero-image">
+            <img src="~/img/LOGO.png" alt="Imagem Centralizada">
+        </div>
+        <h1 class="display-4">Cerberus.NET</h1>
+        <p class="lead">Adaptive, Flexible and Effective.</p>
+    </div>
+    <a href="#features" class="download-btn btn-lg mt-3">Download Last Release</a>
 </div>
+
+<section id="features" class="container mt-5">
+    <h2 class="text-center text-light mb-4">Main Features</h2>
+    <div class="row">
+        <div class="col-md-4 d-flex">
+            <div class="card shadow-sm flex-fill" style="height: 180px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">Efficient Attack</h5>
+                    <p class="card-text text-center flex-fill">Cerberus.NET is designed to carry out attacks efficiently, utilizing advanced techniques that maximize impact while minimizing target response time.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex">
+            <div class="card shadow-sm flex-fill" style="height: 180px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">Silently</h5>
+                    <p class="card-text text-center flex-fill">Operating in the background, Cerberus.NET can infiltrate and execute its actions without detection.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex">
+            <div class="card shadow-sm flex-fill" style="height: 180px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">Modularity</h5>
+                    <p class="card-text text-center flex-fill">The modularity of Cerberus.NET allows it to adapt to various environments and requirements. Users can customize its functionalities with additional modules.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="animated-text" class="container mt-5 text-center text-light">
+    <h2 class="text-light mb-4">Advanced Experience</h2>
+    <div class="animated-area">
+        <span id="typed-output" class="typed-text"></span><span class="cursor">_</span>
+    </div>
+</section>

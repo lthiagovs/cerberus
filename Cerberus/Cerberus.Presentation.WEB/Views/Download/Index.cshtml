@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .text-light {
+        color: #f0f0f0 !important;
+    }
+
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    .download-card {
+        width: 100%;
+        margin: 0 auto; /* Centraliza o card */
+        padding: 0;
+        border: 1px solid #007bff;
+        border-radius: 8px;
+        background-color: #2c2c2c;
+        transition: transform 0.2s, box-shadow 0.2s;
+        height: 100%;
+        max-width: 400px; /* Define uma largura máxima para os cards */
+    }
+
+        .download-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+        }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+
+    .container {
+        max-width: 1200px; /* Limita a largura máxima do container */
+    }
+
+    .row {
+        justify-content: center; /* Garante que os cards fiquem centralizados */
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="text-light text-center mb-4">Downloads</h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+            <div class="download-card text-light">
+                <img src="~/img/light_cerberus.jpeg" class="card-img-top" alt="Light Cerberus">
+                <div class="card-body">
+                    <h5 class="card-title">Light Cerberus</h5>
+                    <p class="card-text">Uma versão leve e rápida do Cerberus, ideal para quem busca eficiência.</p>
+                    <p><strong>Plano Necessário:</strong> Básico</p>
+                    <a href="#" class="btn btn-primary">Baixar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+            <div class="download-card text-light">
+                <img src="~/img/middle_cerberus.jpeg" class="card-img-top" alt="Invasive Cerberus">
+                <div class="card-body">
+                    <h5 class="card-title">Invasive Cerberus</h5>
+                    <p class="card-text">Uma versão avançada com recursos de invasão e monitoramento.</p>
+                    <p><strong>Plano Necessário:</strong> Intermediário</p>
+                    <a href="#" class="btn btn-primary">Baixar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+            <div class="download-card text-light">
+                <img src="~/img/heavy_cerberus.jpeg" class="card-img-top" alt="Trojan Cerberus">
+                <div class="card-body">
+                    <h5 class="card-title">Trojan Cerberus</h5>
+                    <p class="card-text">A versão mais completa e poderosa, com todas as funcionalidades do Cerberus.</p>
+                    <p><strong>Plano Necessário:</strong> Avançado</p>
+                    <a href="#" class="btn btn-primary">Baixar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

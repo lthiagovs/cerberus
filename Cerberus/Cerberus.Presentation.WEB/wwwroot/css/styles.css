@@ -1,0 +1,208 @@
+/* Reset básico para o HTML e body */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+    background-color: #1c1c1c;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f0f0;
+    box-sizing: border-box; /* Para garantir que padding e border não aumentem o tamanho do elemento */
+}
+
+.container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+/* Imagem de perfil */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    transition: transform 0.3s;
+}
+
+    .profile-img:hover {
+        transform: scale(1.1);
+    }
+
+/* Navbar */
+.navbar {
+    padding: 1rem;
+    margin-bottom: 20px; /* Cria espaço abaixo da navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+}
+
+    .navbar .navbar-nav.ml-auto {
+        display: flex;
+        align-items: center;
+    }
+
+        .navbar .navbar-nav.ml-auto .text-light {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .navbar-brand img {
+        width: 50px; /* Tamanho fixo desejado */
+        height: 50px;
+        margin-right: 10px;
+    }
+
+.nav-link {
+    padding: 15px;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+    }
+
+/* Hero Section */
+.hero-section {
+    width: 100vw; /* Ocupa 100% da largura da viewport */
+    height: 100vh; /* Ocupa 100% da altura da viewport */
+    background-image: url('../img/background.jpg'); /* Certifique-se de que a URL da imagem está correta */
+    background-size: cover; /* Garante que a imagem cubra toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+    overflow: hidden; /* Evita rolagem dentro da hero */
+}
+
+    /* Sobreposição da hero section */
+    .hero-section .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Sobreposição escura */
+        z-index: 1;
+        transition: opacity 0.3s ease-in-out; /* Transição suave para a opacidade */
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center; /* Garante que o texto e o conteúdo estejam centralizados */
+}
+
+.hero-image {
+    margin-bottom: 20px;
+}
+
+    .hero-image img {
+        width: 250px; /* Tamanho fixo desejado */
+        height: 250px;
+        object-fit: contain;
+    }
+
+/* Animações e estilos adicionais */
+.animated-area {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.cursor {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Botão de download */
+.download-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s ease-in-out; /* Transição suave da cor do botão */
+}
+
+    /* Removendo a cor verde ao passar o mouse */
+    .download-btn:hover {
+        background-color: #007bff; /* Uma cor mais escura de azul */
+        color: #fff; /* Mantém o texto branco */
+        text-decoration: none; /* Remove qualquer sublinhado do texto */
+    }
+
+/* Quando o mouse passar sobre a hero-section */
+.hero-section:hover .overlay {
+    opacity: 0; /* Remove a sobreposição escura */
+}
+
+.hero-section:hover .download-btn {
+    background-color: #28a745; /* Muda a cor do botão para verde ao passar o mouse */
+    color: #fff;
+}
+
+/* Estilos do Card */
+.card {
+    background-color: #252525;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+/* Footer */
+footer {
+    position: relative;
+    background-image: url('../img/footer-bg.jpg'); /* Imagem de fundo do footer */
+    background-size: cover;
+    background-position: center;
+}
+
+    footer:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8); /* Sobreposição escura para legibilidade */
+    }
+
+    footer p, footer a {
+        position: relative;
+        z-index: 1;
+    }
+
+        footer a:hover {
+            text-decoration: underline;
+        }

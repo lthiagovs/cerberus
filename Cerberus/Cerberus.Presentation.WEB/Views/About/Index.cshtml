@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .about-section {
+        padding: 40px 0;
+        color: #f0f0f0;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .team-card {
+        background-color: #2c2c2c;
+        border: 1px solid white;
+        border-radius: 8px;
+        padding: 20px;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            background-color: #3a3a3a;
+        }
+
+    .team-img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+
+        .team-img:hover {
+            transform: scale(1.1);
+        }
+
+    .contact-info {
+        margin-top: 30px;
+        border-top: 1px solid white;
+        padding-top: 20px;
+    }
+</style>
+
+<div class="container about-section">
+    <h2 class="text-light text-center">About Cerberus.NET</h2>
+    <p class="text-light text-center">Cerberus.NET is an innovative solution that enables secure and effective management and monitoring of devices. With a user-friendly interface and advanced features, our platform is designed to cater to both novice and experienced users.</p>
+
+    <h3 class="text-center mt-5 text-light">Our Mission</h3>
+    <p class="text-light text-center">To provide powerful and reliable tools that help our users achieve their goals securely and efficiently.</p>
+
+    <h3 class="text-center mt-5 text-light">Team</h3>
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="team-card text-light text-center">
+                <img src="team_member_1.jpg" alt="Team Member" class="team-img mb-3">
+                <h5>Luis Thiago Vasconcelos</h5>
+                <p>.NET Fullstack Developer</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="team-card text-light text-center">
+                <img src="team_member_2.jpg" alt="Team Member" class="team-img mb-3">
+                <h5>Emanuel Magalhães</h5>
+                <p>.NET Fullstack Developer</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-info text-light text-center">
+        <h3 class="mt-5 text-light">Contact</h3>
+        <p>For more information, contact us via email: <a href="mailto:contact@cerberus.net" class="text-primary">contact@cerberus.net</a></p>
+    </div>
+</div>
