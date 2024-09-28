@@ -12,7 +12,7 @@ namespace Cerberus.Domain.ApiService.ApiService
 
         public UserApiService(RestClient client)
         {
-            this._client = new RestClient("http://localhost:5108/api/User");
+            this._client = client;
         }
 
         public async Task<bool> CreateUser(User user)
