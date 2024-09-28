@@ -1,8 +1,14 @@
-﻿@{
+﻿@model AccountRequestModel
+@{
     ViewData["Title"] = "Home Page";
 }
-
 <style>
+    /* General page styles */
+    body {
+        background-color: #1a1a1a; /* Dark background for the entire page */
+        color: #e0e0e0; /* Light text color */
+    }
+
     .text-light {
         color: #e0e0e0 !important; /* Darkened the light text color */
     }
@@ -11,85 +17,190 @@
         color: #007bff !important;
     }
 
-    /* Specific style for the login screen */
+    /* Title and subtitle styling */
+    .title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: bold;
+        color: #f5f5f5;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9); /* Dark shadow for title */
+        margin-bottom: 10px;
+        animation: fadeInDown 1s ease;
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 24px;
+        font-weight: lighter;
+        color: #bbbbbb;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Subtle shadow for subtitle */
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease;
+    }
+
+    /* Smoke effect */
+    .card-container {
+        position: relative; /* Enable positioning for the smoke */
+    }
+
+    .card-container::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        left: -50px;
+        right: -50px;
+        bottom: -50px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        z-index: -1; /* Keep it behind the card */
+        opacity: 0.7;
+        animation: smoke 5s infinite ease-in-out;
+    }
+
+    /* Card styling */
     .card {
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Darkened shadow */
-        background-color: #2b2b2b; /* Dark background for card */
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8); /* Darker shadow */
+        background-color: #2a2a2a; /* Darker card background */
+        animation: zoomIn 0.5s ease;
     }
 
     .form-control {
         background-color: #333; /* Darker background for inputs */
         color: #fff; /* White text for inputs */
-        border: 1px solid #444; /* Slightly lighter border */
+        border: 1px solid #555; /* Slightly lighter border */
     }
 
         .form-control::placeholder {
-            color: #bbb; /* Placeholder color */
+            color: #aaa; /* Lighter placeholder color */
         }
 
     .btn-primary {
         background-color: #007bff; /* Button background */
         border-color: #007bff; /* Button border */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
         .btn-primary:hover {
             background-color: #0056b3; /* Darker on hover */
             border-color: #004085; /* Darker border on hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Hover shadow effect */
         }
+
+    /* Animations */
+    @@keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes zoomIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Smoke animation */
+    @@keyframes smoke {
+        0% {
+            transform: translateX(0) translateY(0) scale(1);
+            opacity: 0.6;
+        }
+        50% {
+            transform: translateX(20px) translateY(-20px) scale(1.1);
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateX(0) translateY(0) scale(1);
+            opacity: 0.6;
+        }
+    }
+
+    /* Container styling for centralizing */
+    .container {
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
-<div class="container d-flex align-items-center justify-content-center vh-100">
-    <div class="card text-light" style="width: 400px;">
-        <div class="card-header text-center">
-            <ul class="nav nav-tabs card-header-tabs" id="login-register-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#register">Register</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body tab-content">
-            <div class="tab-pane fade show active" id="login">
-                <form>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
-                </form>
-                <div class="text-center mt-3">
-                    <a href="#" class="text-light">Forgot password?</a>
-                </div>
+<div class="container">
+    <div class="card-container">
+        <h1 class="title">Join Us!</h1>
+        <h2 class="subtitle">It's Free!</h2>
+        <div class="card text-light" style="width: 400px;">
+            <div class="card-header text-center">
+                <ul class="nav nav-tabs card-header-tabs" id="login-register-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#register">Register</a>
+                    </li>
+                </ul>
             </div>
-            <div class="tab-pane fade" id="register">
-                <form>
-                    <div class="form-group">
-                        <label for="newEmail">E-mail</label>
-                        <input type="email" class="form-control" id="newEmail" placeholder="Enter your email" required>
+            <div class="card-body tab-content">
+                <div class="tab-pane fade show active" id="login">
+                    <form method="post" asp-page-handler="Login">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" asp-for="@Model.ResquestEmail" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" asp-for="@Model.RequestPassword" class="form-control" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <input type="submit" asp-action="OnPostLogin" class="btn btn-primary btn-block" value="Log In">
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-light">Forgot password?</a>
                     </div>
-                    <div class="form-group">
-                        <label for="newPassword">Password</label>
-                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-                    </div>
-                    <button class="btn btn-primary btn-block">
-                        <a class="nav-link" href="@Url.Action("Index", "User")">Register</a>
-                    </button>
-                </form>
+                </div>
+                <div class="tab-pane fade" id="register">
+                    <form>
+                        <div class="form-group">
+                            <label for="newEmail">E-mail</label>
+                            <input type="email" class="form-control" id="newEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Password</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <button class="btn btn-primary btn-block">
+                            <a class="nav-link" href="@Url.Action("Index", "User")">Register</a>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

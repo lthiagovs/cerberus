@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cerberus.Domain.ApiService\Cerberus.Domain.ApiService.csproj" />
     <ProjectReference Include="..\Cerberus.Domain.Models\Cerberus.Domain.Models.csproj" />
   </ItemGroup>
 

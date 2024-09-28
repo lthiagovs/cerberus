@@ -7,27 +7,34 @@
         from { opacity: 0; }
         to { opacity: 1; }
     }
+    body {
+        background-color: #121212; /* Fundo escuro para a página */
+        color: #e0e0e0; /* Cor do texto */
+    }
     .info-card {
-        border: 1px solid #17a2b8; /* Light color */
+        border: 1px solid #444; /* Cor da borda mais escura */
         border-radius: 8px;
-        background-color: #2c2c2c;
+        background-color: #1e1e1e; /* Fundo do cartão */
         padding: 20px;
         margin-bottom: 20px;
         transition: transform 0.3s;
     }
     .info-card:hover {
         transform: scale(1.02);
-        box-shadow: 0 0 15px rgba(23, 162, 184, 0.5); /* Light color */
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Sombra sutil */
     }
     .btn-custom {
         margin-right: 10px;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #17a2b8; /* Cor do botão */
+        color: #fff; /* Cor do texto do botão */
     }
     .btn-custom:hover {
         background-color: #0056b3;
+        color: #fff;
     }
     .table-header {
-        background-color: #17a2b8; /* Light color */
+        background-color: #444; /* Cor escura para o cabeçalho da tabela */
         color: #fff;
         transition: background-color 0.3s;
     }
@@ -35,14 +42,20 @@
         background-color: #0056b3;
     }
     .table-dark th, .table-dark td {
-        border: 1px solid #444;
+        border: 1px solid #555; /* Bordas da tabela */
+    }
+    #map {
+        height: 300px; /* Altura do mapa */
+        border-radius: 8px;
+        margin-top: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra do mapa */
     }
 </style>
 
 <div class="container mt-4">
     <!-- Script Card -->
-    <div class="info-card text-light">
-        <h2 class="text-light">Script</h2>
+    <div class="info-card">
+        <h2>Script</h2>
         <p><strong>Name:</strong> Script Name</p>
         <p><strong>Creator:</strong> User Name</p>
         <p><strong>Consumes:</strong> DLL it consumes</p>
@@ -54,8 +67,8 @@
     </div>
 
     <!-- Data Card -->
-    <div class="info-card text-light">
-        <h2 class="text-light">Data</h2>
+    <div class="info-card">
+        <h2>Data</h2>
         <table class="table table-dark mt-4">
             <thead class="table-header">
                 <tr>
@@ -70,21 +83,48 @@
                     <td>1</td>
                     <td>09/01/2023</td>
                     <td>Type A</td>
-                    <td><button class="btn btn-info">View</button></td>
+                    <td><button class="btn btn-info btn-custom">View</button></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>09/02/2023</td>
                     <td>Type B</td>
-                    <td><button class="btn btn-info">View</button></td>
+                    <td><button class="btn btn-info btn-custom">View</button></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>09/03/2023</td>
                     <td>Type C</td>
-                    <td><button class="btn btn-info">View</button></td>
+                    <td><button class="btn btn-info btn-custom">View</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <!-- Google Maps Section -->
+    <div class="info-card">
+        <h2>Location</h2>
+        <p><strong>Address:</strong> Example Street, 123 - Neighborhood - City - State</p>
+        <p><strong>Coordinates:</strong> -23.5505, -46.6333</p>
+        <div id="map"></div>
+    </div>
 </div>
+
+<!-- Script para Google Maps -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+
+<script>
+    function initMap() {
+        var location = { lat: -23.5505, lng: -46.6333 }; // Coordenadas de São Paulo
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: location
+        });
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
+</script>

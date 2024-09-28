@@ -3,29 +3,28 @@
 }
 
 <style>
-    .text-light {
-        color: #f0f0f0 !important;
-    }
-
-    .text-primary {
-        color: #007bff !important;
+    body {
+        background-color: #121212; /* Dark background for the body */
+        color: #f0f0f0; /* Light text color */
     }
 
     .download-card {
         width: 100%;
-        margin: 0 auto; /* Centraliza o card */
+        margin: 0 auto; /* Center the card */
         padding: 0;
         border: 1px solid #007bff;
         border-radius: 8px;
-        background-color: #2c2c2c;
-        transition: transform 0.2s, box-shadow 0.2s;
+        background-color: #2c2c2c; /* Darker card background */
+        transition: transform 0.3s, box-shadow 0.3s;
         height: 100%;
-        max-width: 400px; /* Define uma largura máxima para os cards */
+        max-width: 400px; /* Maximum width for cards */
+        opacity: 0.9; /* Slightly transparent */
     }
 
         .download-card:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+            opacity: 1; /* Full opacity on hover */
         }
 
     .card-img-top {
@@ -36,16 +35,38 @@
     }
 
     .container {
-        max-width: 1200px; /* Limita a largura máxima do container */
+        max-width: 1200px; /* Maximum width for the container */
     }
 
     .row {
-        justify-content: center; /* Garante que os cards fiquem centralizados */
+        justify-content: center; /* Center the cards */
+    }
+
+    .btn-download {
+        display: block; /* Center button */
+        margin: 0 auto; /* Center align */
+        background-color: #007bff; /* Button color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px; /* Padding for button */
+        color: white; /* Button text color */
+        font-weight: bold; /* Bold text */
+        transition: background-color 0.3s, transform 0.3s; /* Button hover effect */
+    }
+
+        .btn-download:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            transform: scale(1.1); /* Slightly larger on hover */
+        }
+
+    h2, h4 {
+        text-align: center; /* Center headings */
     }
 </style>
 
 <div class="container mt-4">
-    <h2 class="text-light text-center mb-4">Downloads</h2>
+    <h2 class="text-light">Downloads</h2>
+    <h4 class="text-light mb-4">Select the version that suits your needs</h4>
 
     <div class="row">
         <div class="col-md-4 mb-4 d-flex justify-content-center">
@@ -53,9 +74,9 @@
                 <img src="~/img/light_cerberus.jpeg" class="card-img-top" alt="Light Cerberus">
                 <div class="card-body">
                     <h5 class="card-title">Light Cerberus</h5>
-                    <p class="card-text">Uma versão leve e rápida do Cerberus, ideal para quem busca eficiência.</p>
-                    <p><strong>Plano Necessário:</strong> Básico</p>
-                    <a href="#" class="btn btn-primary">Baixar</a>
+                    <p class="card-text">A lightweight and fast version of Cerberus, ideal for efficiency.</p>
+                    <p><strong>Required Plan:</strong> Basic</p>
+                    <a href="#" class="btn-download">Download</a>
                 </div>
             </div>
         </div>
@@ -65,9 +86,9 @@
                 <img src="~/img/middle_cerberus.jpeg" class="card-img-top" alt="Invasive Cerberus">
                 <div class="card-body">
                     <h5 class="card-title">Invasive Cerberus</h5>
-                    <p class="card-text">Uma versão avançada com recursos de invasão e monitoramento.</p>
-                    <p><strong>Plano Necessário:</strong> Intermediário</p>
-                    <a href="#" class="btn btn-primary">Baixar</a>
+                    <p class="card-text">An advanced version with invasion and monitoring features.</p>
+                    <p><strong>Required Plan:</strong> Intermediate</p>
+                    <a href="#" class="btn-download">Download</a>
                 </div>
             </div>
         </div>
@@ -77,9 +98,9 @@
                 <img src="~/img/heavy_cerberus.jpeg" class="card-img-top" alt="Trojan Cerberus">
                 <div class="card-body">
                     <h5 class="card-title">Trojan Cerberus</h5>
-                    <p class="card-text">A versão mais completa e poderosa, com todas as funcionalidades do Cerberus.</p>
-                    <p><strong>Plano Necessário:</strong> Avançado</p>
-                    <a href="#" class="btn btn-primary">Baixar</a>
+                    <p class="card-text">The most complete and powerful version, with all Cerberus functionalities.</p>
+                    <p><strong>Required Plan:</strong> Advanced</p>
+                    <a href="#" class="btn-download">Download</a>
                 </div>
             </div>
         </div>
