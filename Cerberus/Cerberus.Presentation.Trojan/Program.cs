@@ -13,7 +13,7 @@ public class Program
 
         UserApiService userService = new UserApiService();
 
-        User user = await userService.GetUserByLogin("string", "string"); 
+        User user = await userService.GetUserByName("string");
 
         Console.WriteLine("TESTANDO:" + user.Name);
 

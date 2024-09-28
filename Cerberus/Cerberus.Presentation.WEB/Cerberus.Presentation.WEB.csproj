@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cerberus.Domain.ApiService\Cerberus.Domain.ApiService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\img\background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

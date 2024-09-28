@@ -7,7 +7,7 @@ namespace Cerberus.Domain.ApiService.Interface
 
         public Task<ICollection<User>> GetUsers();
 
-        public Task<User> GetUserByID();
+        public Task<User> GetUserByID(int ID);
 
         public Task<User> GetUserByName(string name);
 
@@ -17,7 +17,7 @@ namespace Cerberus.Domain.ApiService.Interface
 
         public Task<bool> UpdateUser(User user);
 
-        public Task<bool> DeleteUser(User user);
+        public Task<bool> DeleteUser(int ID);
 
     }
 
