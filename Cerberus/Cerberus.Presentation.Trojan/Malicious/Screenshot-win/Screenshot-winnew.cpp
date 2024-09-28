@@ -1,10 +1,13 @@
-:#include <windows.h>
+#include <windows.h>
 #include <gdiplus.h>
 #include <memory>
 #include <iostream>
-#include <ostream>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <iomanip>
+#include <json/json.h>  // Biblioteca JSON (certifique-se de que você tenha a biblioteca instalada)
+#include "base64.h"      // Incluir o cabeçalho da biblioteca Base64
 
 #pragma comment(lib, "gdiplus.lib")
 
@@ -31,7 +34,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
     return -1;
 }
 
-bool CapturaTelaWindows(const std::wstring& nomeArquivo) {
+bool CapturaTelaWindows(std::string& jsonString) {
     // Inicializa GDI+
     Gdiplus::GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR gdiplusToken;
@@ -42,7 +45,6 @@ bool CapturaTelaWindows(const std::wstring& nomeArquivo) {
         int larguraTela = GetSystemMetrics(SM_CXSCREEN);
         int alturaTela = GetSystemMetrics(SM_CYSCREEN);
 
-
         // Cria um DC compatível com a tela
         HDC hdcTela = GetDC(nullptr);
         HDC hdcMemDC = CreateCompatibleDC(hdcTela);
@@ -52,14 +54,41 @@ bool CapturaTelaWindows(const std::wstring& nomeArquivo) {
         // Copia a tela para o bitmap
         BitBlt(hdcMemDC, 0, 0, larguraTela, alturaTela, hdcTela, 0, 0, SRCCOPY);
 
-        // Salva o bitmap como arquivo PNG
+        // Converte o bitmap para um stream de bytes
         Gdiplus::Bitmap bitmap(hbmTela, nullptr);
+        IStream* stream = nullptr;
+        CreateStreamOnHGlobal(NULL, TRUE, &stream);
+
         CLSID encoderClsid;
         if (GetEncoderClsid(L"image/png", &encoderClsid) != -1) {
-            bitmap.Save(nomeArquivo.c_str(), &encoderClsid, nullptr);
+            bitmap.Save(stream, &encoderClsid, nullptr);
         }
 
+        // Move o ponteiro do stream para o início
+        LARGE_INTEGER liZero = {};
+        stream->Seek(liZero, STREAM_SEEK_SET, nullptr);
+
+        // Copia os dados do stream para um buffer
+        STATSTG statstg;
+        stream->Stat(&statstg, STATFLAG_NONAME);
+        std::vector<BYTE> buffer(statstg.cbSize.LowPart);
+        ULONG bytesRead;
+        stream->Read(buffer.data(), buffer.size(), &bytesRead);
+
+        // Converte o buffer para base64
+        std::string base64Image = Base64Encode(buffer);
+
+        // Gera o JSON
+        Json::Value jsonData;
+        jsonData["image_base64"] = base64Image;
+        jsonData["format"] = "png";
+
+        // Converte o JSON para string
+        Json::StreamWriterBuilder writer;
+        jsonString = Json::writeString(writer, jsonData);
+
         // Limpa
+        stream->Release();
         SelectObject(hdcMemDC, hbmAntigo);
         DeleteObject(hbmTela);
         DeleteDC(hdcMemDC);
@@ -73,17 +102,17 @@ bool CapturaTelaWindows(const std::wstring& nomeArquivo) {
 }
 
 // Exemplo de uso:
-// CapturaTelaWindows(L"screenshot.png");
 int main() {
-    // Nome do arquivo para salvar a captura de tela
-    std::wstring nomeArquivo = L"captura_de_tela.png";
+    // String para armazenar o JSON gerado
+    std::string jsonString;
 
-    // Chama a função para capturar a tela
-    if (CapturaTelaWindows(nomeArquivo)) {
-        std::wcout << L"Captura de tela salva com sucesso como: " << nomeArquivo << std::endl;
+    // Chama a função para capturar a tela e gerar o JSON
+    if (CapturaTelaWindows(jsonString)) {
+        std::cout << "Dados da captura de tela em JSON: \n" << jsonString << std::endl;
     } else {
-        std::wcerr << L"Falha ao capturar a tela." << std::endl;
+        std::cerr << "Falha ao capturar a tela." << std::endl;
     }
 
     return 0;
 }
+
