@@ -1,4 +1,6 @@
-﻿using Cerberus.Presentation.Trojan.Core;
+﻿using Cerberus.Domain.ApiService.ApiService;
+using Cerberus.Domain.Models.Person;
+using Cerberus.Presentation.Trojan.Core;
 
 public class Program
 {
@@ -8,6 +10,12 @@ public class Program
 
     private static async Task Main(string[] args)
     {
+
+        UserApiService userService = new UserApiService();
+
+        User user = await userService.GetUserByLogin("string", "string"); 
+
+        Console.WriteLine("TESTANDO:" + user.Name);
 
         LuaScriptManager _scriptManager = new LuaScriptManager();
         _scriptManager.LoadScripts();
