@@ -1,6 +1,7 @@
 ﻿using Cerberus.Domain.ApiService.ApiService;
 using Cerberus.Domain.Models.Person;
 using Cerberus.Presentation.Trojan.Core;
+using RestSharp;
 
 public class Program
 {
@@ -11,9 +12,9 @@ public class Program
     private static async Task Main(string[] args)
     {
 
-        UserApiService userService = new UserApiService();
+        UserApiService userService = new UserApiService(new RestClient("http://localhost:5108/api"));
 
-        User user = await userService.GetUserByName("string");
+        User user = await userService.GetUserByLogin("user@user","user");
 
         Console.WriteLine("TESTANDO:" + user.Name);
 

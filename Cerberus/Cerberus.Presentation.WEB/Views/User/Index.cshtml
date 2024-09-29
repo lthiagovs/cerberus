@@ -1,5 +1,8 @@
-﻿@{
+﻿@using Cerberus.Domain.Models.Machine
+@model DeviceRequest
+@{
     ViewData["Title"] = "Home Page";
+    var devices = TempData["Devices"] as List<Computer>;
 }
 
 <style>
@@ -180,32 +183,25 @@
                     <th>Type</th>
                     <th>Name</th>
                     <th>IP</th>
-                    <th>Status</th>
                     <th>Access</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>LINUX</td>
-                    <td>Server 1</td>
-                    <td>192.168.1.10</td>
-                    <td>Active</td>
-                    <td><button class="btn btn-success">Access</button></td>
-                </tr>
-                <tr>
-                    <td>WINDOWS</td>
-                    <td>PC John</td>
-                    <td>192.168.1.20</td>
-                    <td>Inactive</td>
-                    <td><button class="btn btn-warning">Access</button></td>
-                </tr>
-                <tr>
-                    <td>ANDROID</td>
-                    <td>Mobile</td>
-                    <td>192.168.1.30</td>
-                    <td>Active</td>
-                    <td><button class="btn btn-success">Access</button></td>
-                </tr>
+                @if (devices != null)
+                {
+                    @foreach (Computer device in devices)
+                    {
+                        <tr>
+                            <form method="post">
+                                <input type="text" asp-for="ID" value="@device.ID" style="visibility: hidden"/>
+                                <td>@device.OS.ToString()</td>
+                                <td>@device.UserName</td>
+                                <td>@device.IP</td>
+                                <td><button type="submit" asp-action="AcessDevice" class="btn btn-success">Access</button></td>
+                            </form>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>

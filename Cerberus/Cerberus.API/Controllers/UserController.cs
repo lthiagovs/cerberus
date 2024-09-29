@@ -17,7 +17,7 @@ namespace Cerberus.API.Controllers
             this._userRepository = userRepository;
         }
 
-        [HttpGet]
+        [HttpGet("GetUsers")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
         {
@@ -33,7 +33,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{ID:int}")]
+        [HttpGet("GetUserByID")]
         [ProducesResponseType(200, Type = typeof(User))]
         public IActionResult GetUserByID(int ID)
         {
@@ -49,7 +49,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{Name}")]
+        [HttpGet("GetUserByName")]
         [ProducesResponseType(200, Type = typeof(User))]
         public IActionResult GetUserByName(string Name)
         {
@@ -65,7 +65,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("Login")]
+        [HttpGet("GetUserByLogin")]
         [ProducesResponseType(200, Type = typeof(User))]
         public IActionResult GetUserByLogin([FromQuery]string Email, [FromQuery] string Password)
         {
@@ -80,7 +80,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("CreateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateUser([FromBody] User user)
@@ -114,7 +114,7 @@ namespace Cerberus.API.Controllers
 
 
 
-        [HttpPut("{ID}")]
+        [HttpPut("UpdateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
@@ -143,7 +143,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpDelete("{ID}")]
+        [HttpDelete("DeleteUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]

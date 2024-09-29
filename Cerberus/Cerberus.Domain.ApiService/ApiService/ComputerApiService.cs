@@ -1,26 +1,26 @@
 ﻿using Cerberus.Domain.ApiService.Interface;
-using Cerberus.Domain.Models.Person;
+using Cerberus.Domain.Models.Machine;
 using Newtonsoft.Json;
 using RestSharp;
 
 namespace Cerberus.Domain.ApiService.ApiService
 {
-    public class UserApiService : IUserApiService
+    public class ComputerApiService : IComputerApiService
     {
 
         private readonly RestClient _client;
 
-        public UserApiService(RestClient client)
+        public ComputerApiService(RestClient client)
         {
             this._client = client;
         }
 
-        public async Task<bool> CreateUser(User user)
+        public async Task<bool> CreateComputer(Computer computer)
         {
-            var request = new RestRequest("User/CreateUser", Method.Post); // Altere para o método apropriado (POST)
-            var userSerialized = JsonConvert.SerializeObject(user);
+            var request = new RestRequest("Computer/CreateComputer", Method.Post); // Altere para o método apropriado (POST)
+            var computerSerialized = JsonConvert.SerializeObject(computer);
 
-            request.AddParameter("user", userSerialized);
+            request.AddParameter("computer", computerSerialized);
 
             var response = await _client.ExecuteAsync(request);
 
@@ -35,9 +35,9 @@ namespace Cerberus.Domain.ApiService.ApiService
             return result;
         }
 
-        public async Task<bool> DeleteUser(int ID)
+        public async Task<bool> DeleteComputer(int ID)
         {
-            var request = new RestRequest("User/DeleteUser", Method.Delete); // Altere para o método apropriado (POST)
+            var request = new RestRequest("Computer/DeleteComputer", Method.Delete); // Altere para o método apropriado (POST)
 
             request.AddParameter("ID", ID);
 
@@ -54,10 +54,10 @@ namespace Cerberus.Domain.ApiService.ApiService
             return result;
         }
 
-        public async Task<User> GetUserByID(int ID)
+        public async Task<Computer?> GetComputerByID(int ID)
         {
 
-            var request = new RestRequest("User/GetUserByID", Method.Get); // Altere para o método apropriado (POST)
+            var request = new RestRequest("Computer/GetComputerByID", Method.Get); // Altere para o método apropriado (POST)
             request.AddParameter("ID", ID);
 
             var response = await _client.ExecuteAsync(request);
@@ -68,21 +68,20 @@ namespace Cerberus.Domain.ApiService.ApiService
             if (response.Content == null)
                 throw new Exception("Something went wrong.");
 
-            User? user = JsonConvert.DeserializeObject<User>(response.Content); // Remove o operador de nullability aqui
+            Computer? computer = JsonConvert.DeserializeObject<Computer>(response.Content); // Remove o operador de nullability aqui
 
-            if (user == null)
+            if (computer == null)
                 throw new Exception("Something went wrong");
 
-            return user;
+            return computer;
 
         }
 
-        public async Task<User> GetUserByLogin(string email, string password)
+        public async Task<Computer?> GetComputerByIP(string IP)
         {
 
-            var request = new RestRequest("User/GetUserByLogin", Method.Get); // Altere para o método apropriado (POST)
-            request.AddParameter("Email", email);
-            request.AddParameter("Password", password);
+            var request = new RestRequest("User/Login", Method.Get); // Altere para o método apropriado (POST)
+            request.AddParameter("IP", IP);
 
             var response = await _client.ExecuteAsync(request);
 
@@ -92,19 +91,18 @@ namespace Cerberus.Domain.ApiService.ApiService
             if (response.Content == null)
                 throw new Exception("Something went wrong.");
 
-            User? user = JsonConvert.DeserializeObject<User>(response.Content); // Remove o operador de nullability aqui
+            Computer? computer = JsonConvert.DeserializeObject<Computer>(response.Content); // Remove o operador de nullability aqui
 
-            if (user == null)
+            if (computer == null)
                 throw new Exception("Something went wrong");
 
-            return user;
+            return computer;
 
         }
 
-        public async Task<User> GetUserByName(string name)
+        public async Task<ICollection<Computer>> GetComputers()
         {
-            var request = new RestRequest("User/GetUserByName", Method.Get); // Altere para o método apropriado (POST)
-            request.AddParameter("Name", name);
+            var request = new RestRequest("Computer/GetComputers", Method.Get); // Altere para o método apropriado (POST)
 
             var response = await _client.ExecuteAsync(request);
 
@@ -114,40 +112,20 @@ namespace Cerberus.Domain.ApiService.ApiService
             if (response.Content == null)
                 throw new Exception("Something went wrong.");
 
-            User? user = JsonConvert.DeserializeObject<User>(response.Content); // Remove o operador de nullability aqui
+            List<Computer>? computers = JsonConvert.DeserializeObject<List<Computer>>(response.Content); // Remove o operador de nullability aqui
 
-            if (user == null)
+            if (computers == null)
                 throw new Exception("Something went wrong");
 
-            return user;
+            return computers;
         }
 
-        public async Task<ICollection<User>> GetUsers()
+        public async Task<bool> UpdateComputer(Computer computer)
         {
-            var request = new RestRequest("User/GetUsers", Method.Get); // Altere para o método apropriado (POST)
+            var request = new RestRequest("Computer/UpdateComputer", Method.Put); // Altere para o método apropriado (POST)
+            var computerSerialized = JsonConvert.SerializeObject(computer);
 
-            var response = await _client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful)
-                throw new Exception($"Erro: {response.StatusCode} - {response.ErrorMessage}");
-
-            if (response.Content == null)
-                throw new Exception("Something went wrong.");
-
-            List<User>? user = JsonConvert.DeserializeObject<List<User>>(response.Content); // Remove o operador de nullability aqui
-
-            if (user == null)
-                throw new Exception("Something went wrong");
-
-            return user;
-        }
-
-        public async Task<bool> UpdateUser(User user)
-        {
-            var request = new RestRequest("User/UpdateUser", Method.Put); // Altere para o método apropriado (POST)
-            var userSerialized = JsonConvert.SerializeObject(user);
-
-            request.AddParameter("user", userSerialized);
+            request.AddParameter("computer", computerSerialized);
 
             var response = await _client.ExecuteAsync(request);
 
