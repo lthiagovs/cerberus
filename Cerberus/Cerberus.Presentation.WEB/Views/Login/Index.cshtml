@@ -1,6 +1,7 @@
 ﻿@model AccountRequestModel
 @{
     ViewData["Title"] = "Home Page";
+    var alertMessage = TempData["AlertMessage"];
 }
 <style>
     /* General page styles */
@@ -177,6 +178,11 @@
                             <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
                         <input type="submit" asp-action="OnPostLogin" class="btn btn-primary btn-block" value="Log In">
+                        @if (alertMessage != null)
+                        {
+                            <br />
+                            <label class="alert alert-danger">@alertMessage</label>
+                        }
                     </form>
                     <div class="text-center mt-3">
                         <a href="#" class="text-light">Forgot password?</a>
@@ -205,3 +211,4 @@
         </div>
     </div>
 </div>
+

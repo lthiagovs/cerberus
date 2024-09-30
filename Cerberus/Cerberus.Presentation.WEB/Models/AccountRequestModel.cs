@@ -6,10 +6,10 @@ namespace Cerberus.Presentation.WEB.Models
     {
 
         [Required(ErrorMessage = "Email is required.")]
-        public string? ResquestEmail;
+        public string? ResquestEmail {  get; set; }
 
         [Required(ErrorMessage = "Password is required.")]
-        public string? RequestPassword;
+        public string? RequestPassword {  get; set; }
 
     }
 }

@@ -1,9 +1,19 @@
+using Cerberus.Domain.ApiService.ApiService;
+using Cerberus.Domain.ApiService.Interface;
+using RestSharp;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton(new RestClient(connection != null ? connection : ""));
+builder.Services.AddScoped<IUserApiService, UserApiService>();
+builder.Services.AddScoped<IComputerApiService, ComputerApiService>();
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

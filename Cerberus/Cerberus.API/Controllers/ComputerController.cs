@@ -16,7 +16,7 @@ namespace Cerberus.API.Controllers
             this._computerRepository = computerRepository;
         }
 
-        [HttpGet]
+        [HttpGet("GetComputers")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Computer>))]
         public IActionResult GetComputers()
         {
@@ -31,7 +31,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{ID:int}")]
+        [HttpGet("GetComputerByID")]
         [ProducesResponseType(200, Type = typeof(Computer))]
         public IActionResult GetComputerByID(int ID)
         {
@@ -47,7 +47,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{IP}")]
+        [HttpGet("GetComputerByIP")]
         [ProducesResponseType(200, Type = typeof(Computer))]
         public IActionResult GetComputerByIP(string IP)
         {
@@ -63,7 +63,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("CreateComputer")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateComputer([FromBody]Computer computer)
@@ -94,7 +94,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPut("{ID}")]
+        [HttpPut("UpdateComputer")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
@@ -122,7 +122,7 @@ namespace Cerberus.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{ID}")]
+        [HttpDelete("DeleteComputer")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]

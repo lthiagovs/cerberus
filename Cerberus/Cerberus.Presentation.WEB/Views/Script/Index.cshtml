@@ -3,58 +3,89 @@
 }
 
 <style>
+    /* Animação de fade-in para suavizar a exibição */
     @@keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
+
     body {
         background-color: #121212; /* Fundo escuro para a página */
         color: #e0e0e0; /* Cor do texto */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Mantendo consistência de fonte */
     }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
     .info-card {
+        background-color: #1e1e1e; /* Fundo do cartão */
         border: 1px solid #444; /* Cor da borda mais escura */
         border-radius: 8px;
-        background-color: #1e1e1e; /* Fundo do cartão */
         padding: 20px;
         margin-bottom: 20px;
-        transition: transform 0.3s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adicionando animação de hover */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra sutil */
     }
-    .info-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Sombra sutil */
-    }
+
+        .info-card:hover {
+            transform: translateY(-5px); /* Elevar cartão ao hover */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5); /* Aumentar sombra no hover */
+        }
+
     .btn-custom {
-        margin-right: 10px;
-        transition: background-color 0.3s, color 0.3s;
+        padding: 10px 20px;
+        border-radius: 50px; /* Bordas arredondadas para os botões */
+        font-weight: bold;
         background-color: #17a2b8; /* Cor do botão */
         color: #fff; /* Cor do texto do botão */
+        margin-right: 10px;
+        transition: background-color 0.3s, color 0.3s; /* Animação suave */
     }
-    .btn-custom:hover {
-        background-color: #0056b3;
-        color: #fff;
-    }
+
+        .btn-custom:hover {
+            background-color: #0056b3; /* Cor de fundo no hover */
+            color: #fff; /* Cor do texto no hover */
+        }
+
     .table-header {
         background-color: #444; /* Cor escura para o cabeçalho da tabela */
         color: #fff;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s; /* Animação suave no hover */
     }
-    .table-header:hover {
-        background-color: #0056b3;
-    }
+
+        .table-header:hover {
+            background-color: #0056b3;
+        }
+
     .table-dark th, .table-dark td {
         border: 1px solid #555; /* Bordas da tabela */
     }
+
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
     #map {
         height: 300px; /* Altura do mapa */
         border-radius: 8px;
         margin-top: 20px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra do mapa */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra do mapa */
     }
 </style>
 
 <div class="container mt-4">
     <!-- Script Card -->
-    <div class="info-card">
+    <div class="info-card text-center fade-in">
         <h2>Script</h2>
         <p><strong>Name:</strong> Script Name</p>
         <p><strong>Creator:</strong> User Name</p>
@@ -67,8 +98,8 @@
     </div>
 
     <!-- Data Card -->
-    <div class="info-card">
-        <h2>Data</h2>
+    <div class="info-card fade-in">
+        <h2 class="text-center">Data</h2>
         <table class="table table-dark mt-4">
             <thead class="table-header">
                 <tr>
@@ -102,8 +133,8 @@
     </div>
 
     <!-- Google Maps Section -->
-    <div class="info-card">
-        <h2>Location</h2>
+    <div class="info-card fade-in">
+        <h2 class="text-center">Location</h2>
         <p><strong>Address:</strong> Example Street, 123 - Neighborhood - City - State</p>
         <p><strong>Coordinates:</strong> -23.5505, -46.6333</p>
         <div id="map"></div>
@@ -111,10 +142,7 @@
 </div>
 
 <!-- Script para Google Maps -->
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-</script>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 <script>
     function initMap() {
         var location = { lat: -23.5505, lng: -46.6333 }; // Coordenadas de São Paulo
