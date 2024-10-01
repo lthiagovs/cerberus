@@ -1,5 +1,7 @@
-﻿@{
+﻿@using Cerberus.Domain.Models.Machine
+@{
     ViewData["Title"] = "Device Page";
+    var scripts = TempData["Scripts"] as List<ComputerScript>;
 }
 
 <style>
@@ -122,27 +124,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Script A</td>
-                    <td>Ativo</td>
-                    <td><button class="btn btn-info btn-custom">Ver Dados</button></td>
-                    <td><button class="btn btn-danger btn-custom">Excluir</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Script B</td>
-                    <td>Inativo</td>
-                    <td><button class="btn btn-info btn-custom">Ver Dados</button></td>
-                    <td><button class="btn btn-danger btn-custom">Excluir</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Script C</td>
-                    <td>Ativo</td>
-                    <td><button class="btn btn-info btn-custom">Ver Dados</button></td>
-                    <td><button class="btn btn-danger btn-custom">Excluir</button></td>
-                </tr>
+                @if (scripts != null)
+                {
+                    @foreach (var script in scripts)
+                    {
+                        <tr>
+                            <td>@script.ID</td>
+                            <td>@script.Name</td>
+                            <td>@script.Active</td>
+                            <td><button class="btn btn-info btn-custom">Ver Dados</button></td>
+                            <td><button class="btn btn-danger btn-custom">Excluir</button></td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>

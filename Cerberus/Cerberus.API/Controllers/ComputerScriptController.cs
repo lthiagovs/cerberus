@@ -17,7 +17,7 @@ namespace Cerberus.API.Controllers
             this._computerScriptRepository = computerScriptRepository;
         }
 
-        [HttpGet]
+        [HttpGet("GetComputerScripts")]
         [ProducesResponseType(200, Type =  typeof(IEnumerable<ComputerScript>))]
         public IActionResult GetComputerScripts()
         {
@@ -33,7 +33,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpGet("{ID}")]
+        [HttpGet("GetComputerScriptByID")]
         [ProducesResponseType(200, Type = typeof(ComputerScript))]
         public IActionResult GetComputerScriptByID(int ID)
         {
@@ -49,7 +49,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("CreateComputerScript")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateComputerScript([FromBody]ComputerScript script)
@@ -80,7 +80,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPut("ID")]
+        [HttpPut("UpdateScript")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
@@ -109,7 +109,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpDelete("ID")]
+        [HttpDelete("DeleteScript")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
