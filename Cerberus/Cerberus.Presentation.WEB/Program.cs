@@ -11,6 +11,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton(new RestClient(connection != null ? connection : ""));
 builder.Services.AddScoped<IUserApiService, UserApiService>();
 builder.Services.AddScoped<IComputerApiService, ComputerApiService>();
+builder.Services.AddScoped<IComputerScriptApiService, ComputerScriptApiService>();
 var app = builder.Build();
 
 

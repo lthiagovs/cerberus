@@ -79,7 +79,7 @@ namespace Cerberus.Domain.ApiService.ApiService
 
         public async Task<ICollection<ComputerScript>> GetComputerScripts()
         {
-            var request = new RestRequest("ComputerScript/GetComputerScript", Method.Get); // Altere para o método apropriado (POST)
+            var request = new RestRequest("ComputerScript/GetComputerScripts", Method.Get);
 
             var response = await _client.ExecuteAsync(request);
 
@@ -89,7 +89,7 @@ namespace Cerberus.Domain.ApiService.ApiService
             if (response.Content == null)
                 throw new Exception("Something went wrong.");
 
-            List<ComputerScript>? scripts = JsonConvert.DeserializeObject<List<ComputerScript>>(response.Content); // Remove o operador de nullability aqui
+            List<ComputerScript>? scripts = JsonConvert.DeserializeObject<List<ComputerScript>>(response.Content);
 
             if (scripts == null)
                 throw new Exception("Something went wrong");

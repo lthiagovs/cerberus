@@ -1,5 +1,7 @@
-﻿@{
+﻿@using Cerberus.Domain.Models.Machine
+@{
     ViewData["Title"] = "Home Page";
+    var scripts = TempData["Scripts"] as List<ComputerScript>;
 }
 
 <style>
@@ -104,30 +106,24 @@
             <thead class="table-header">
                 <tr>
                     <th>ID</th>
-                    <th>Submission Date</th>
-                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Active</th>
                     <th>View</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>09/01/2023</td>
-                    <td>Type A</td>
-                    <td><button class="btn btn-info btn-custom">View</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>09/02/2023</td>
-                    <td>Type B</td>
-                    <td><button class="btn btn-info btn-custom">View</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>09/03/2023</td>
-                    <td>Type C</td>
-                    <td><button class="btn btn-info btn-custom">View</button></td>
-                </tr>
+                @if (scripts != null)
+                {
+                    @foreach (var script in scripts)
+                    {
+                        <tr>
+                            <td>@script.ID</td>
+                            <td>@script.Name</td>
+                            <td>@script.Active</td>
+                            <td><button class="btn btn-info btn-custom">View</button></td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
