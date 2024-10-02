@@ -7,7 +7,7 @@ namespace Cerberus.Presentation.Trojan.Core
     public class LuaScriptManager
     {
 
-        public List<string> _scripts;
+        private List<string> _scripts;
         private List<LuaService> _services;
 
         public LuaScriptManager()

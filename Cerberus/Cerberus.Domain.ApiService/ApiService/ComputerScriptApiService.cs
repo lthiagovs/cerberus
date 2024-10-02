@@ -77,7 +77,7 @@ namespace Cerberus.Domain.ApiService.ApiService
 
         }
 
-        public async Task<ICollection<ComputerScript>> GetComputerScripts()
+        public async Task<List<ComputerScript>> GetComputerScripts()
         {
             var request = new RestRequest("ComputerScript/GetComputerScripts", Method.Get);
 

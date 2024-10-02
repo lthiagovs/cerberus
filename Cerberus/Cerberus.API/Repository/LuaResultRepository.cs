@@ -14,6 +14,13 @@ namespace Cerberus.API.Repository
             this._context = context;
         }
 
+        public ICollection<LuaResult> GetLuaResults()
+        {
+
+            return this._context.LuaResult.ToList();
+
+        }
+
         public ICollection<LuaResult> GetLuaResultsByIP(string IP)
         {
             return this._context.LuaResult.Where(result => result.IP == IP).OrderBy(result => result.Time).ToList();

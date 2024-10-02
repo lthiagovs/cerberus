@@ -5,7 +5,7 @@ namespace Cerberus.Domain.ApiService.Interface
     public interface IComputerScriptApiService
     {
 
-        public Task<ICollection<ComputerScript>> GetComputerScripts();
+        public Task<List<ComputerScript>> GetComputerScripts();
 
         public Task<ComputerScript?> GetComputerScriptByID(int ID);
 
