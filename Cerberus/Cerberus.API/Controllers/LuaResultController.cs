@@ -17,9 +17,26 @@ namespace Cerberus.API.Controllers
             this._luaResultRepository = luaResultRepository;
         }
 
-        [HttpGet]
+        [HttpGet("GetLuaResults")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<LuaResult>))]
-        public IActionResult GetLuaResultByComputerIP(string IP)
+        public IActionResult GetLuaResults()
+        {
+
+            var result = this._luaResultRepository.GetLuaResults();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+
+        }
+
+        [HttpGet("GetLuaResultsByComputerIP")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<LuaResult>))]
+        public IActionResult GetLuaResultsByComputerIP(string IP)
         {
 
             var result = this._luaResultRepository.GetLuaResultsByIP(IP);
@@ -34,7 +51,7 @@ namespace Cerberus.API.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("CreateLuaResult")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateLuaResult([FromBody] LuaResult luaResult)
