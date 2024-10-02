@@ -6,6 +6,7 @@ using RestSharp;
 public class Program
 {
     private static bool Run = true;
+    public static LuaResultApiService _luaResultApiService = new LuaResultApiService(new RestClient("http://localhost:5108/api"));
     private static UserApiService _userService = new UserApiService(new RestClient("http://localhost:5108/api"));
     private static ComputerScriptApiService _scriptService = new ComputerScriptApiService(new RestClient("http://localhost:5108/api"));
     private static LuaScriptManager _scriptManager = new LuaScriptManager();
@@ -43,8 +44,6 @@ public class Program
     {
 
         _scriptManager.LoadScripts();
-
-        _ = _scriptManager.StartScriptAsync("keylogger");
         _ = await Program.ListenScriptCalls();
 
     }

