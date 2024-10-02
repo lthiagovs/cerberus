@@ -14,25 +14,27 @@ public class Program
     private static async Task<int> ListenScriptCalls()
     {
          
-        while (Run)
+
+        List<ComputerScript> _scripts = await _scriptService.GetComputerScripts();
+        _scripts = _scripts.ToList();
+        List<string> _services = _scriptManager.GetAllScripts();
+
+        foreach (ComputerScript script in _scripts)
         {
-            List<ComputerScript> _scripts = await _scriptService.GetComputerScripts();
-            _scripts = _scripts.ToList();
-            List<string> _services = _scriptManager.GetAllScripts();
+            string? service = _services.FirstOrDefault(svc => svc == script.Name);
 
-            foreach (ComputerScript script in _scripts)
+            if (service != null)
             {
-                string? service = _services.FirstOrDefault(svc => svc == script.Name);
-
-                if (service != null)
+                if (script.Active)
                 {
-                    if (script.Active)
-                        _scriptManager.StartScript(service);
-                    else
-                        _scriptManager.StopScript(service);
+                    _ = await _scriptManager.StartScriptAsync(service);
                 }
-
+                else
+                {
+                    _scriptManager.StopScript(service);
+                }
             }
+
         }
 
         return 1;

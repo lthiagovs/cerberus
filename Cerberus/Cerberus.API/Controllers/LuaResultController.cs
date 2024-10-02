@@ -69,7 +69,7 @@ namespace Cerberus.API.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok("Sucessfully created");
+            return Ok(true);
 
         }
 

@@ -14,7 +14,7 @@ namespace Cerberus.API.Repository
             this._context = context;
         }
 
-        public ICollection<LuaResult> GetLuaResult()
+        public ICollection<LuaResult> GetLuaResults()
         {
 
             return this._context.LuaResult.ToList();

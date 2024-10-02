@@ -17,10 +17,14 @@ namespace Cerberus.Domain.ApiService.ApiService
 
         public async Task<bool> CreateLuaResult(LuaResult luaResult)
         {
-            var request = new RestRequest("LuaResult/CreateLuaResult", Method.Post); // Altere para o método apropriado (POST)
-            var userSerialized = JsonConvert.SerializeObject(luaResult);
+            var request = new RestRequest("LuaResult/CreateLuaResult", Method.Post);
 
-            request.AddParameter("luaResult", userSerialized);
+            var resultSerialized = JsonConvert.SerializeObject(luaResult);
+
+            request.AddStringBody(resultSerialized, DataFormat.Json); // Define o corpo da requisição como JSON
+
+            // Define o cabeçalho Content-Type como application/json
+            request.AddHeader("Content-Type", "application/json");
 
             var response = await _client.ExecuteAsync(request);
 
@@ -30,7 +34,7 @@ namespace Cerberus.Domain.ApiService.ApiService
             if (response.Content == null)
                 throw new Exception("Something went wrong.");
 
-            bool result = JsonConvert.DeserializeObject<bool>(response.Content); // Remove o operador de nullability aqui
+            bool result = JsonConvert.DeserializeObject<bool>(response.Content);
 
             return result;
         }

