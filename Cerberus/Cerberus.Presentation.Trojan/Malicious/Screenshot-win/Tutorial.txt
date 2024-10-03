@@ -1,6 +1,0 @@
-mkdir build
-cd build
-cmake ..
-cmake --build .
-
-Isso vai gerar um arquivo executável no diretório build. O CMake automaticamente irá baixar a biblioteca nlohmann/json usando FetchContent e fazer a integração necessária no projeto.

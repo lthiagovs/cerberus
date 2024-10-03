@@ -2,39 +2,14 @@
 #include <gdiplus.h>
 #include <memory>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
-#include <sstream>
-#include <iomanip>
-#include <json/json.h>  // Biblioteca JSON (certifique-se de que você tenha a biblioteca instalada)
-#include "base64.h"      // Incluir o cabeçalho da biblioteca Base64
-
+#include <json/json.h>  // Biblioteca para lidar com JSON
 #pragma comment(lib, "gdiplus.lib")
 
-// Função auxiliar para obter o CLSID do encoder
-int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
-    UINT num = 0;
-    UINT size = 0;
-
-    Gdiplus::GetImageEncodersSize(&num, &size);
-    if (size == 0) return -1;
-
-    std::vector<BYTE> buffer(size);
-    Gdiplus::ImageCodecInfo* pImageCodecInfo = reinterpret_cast<Gdiplus::ImageCodecInfo*>(&buffer[0]);
-
-    Gdiplus::GetImageEncoders(num, size, pImageCodecInfo);
-
-    for (UINT j = 0; j < num; ++j) {
-        if (wcscmp(pImageCodecInfo[j].MimeType, format) == 0) {
-            *pClsid = pImageCodecInfo[j].Clsid;
-            return j;
-        }
-    }
-
-    return -1;
-}
-
-bool CapturaTelaWindows(std::string& jsonString) {
+// Função para capturar os dados de pixels da tela
+bool CapturaTelaWindows(const std::string& nomeArquivoJson) {
     // Inicializa GDI+
     Gdiplus::GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR gdiplusToken;
@@ -54,41 +29,34 @@ bool CapturaTelaWindows(std::string& jsonString) {
         // Copia a tela para o bitmap
         BitBlt(hdcMemDC, 0, 0, larguraTela, alturaTela, hdcTela, 0, 0, SRCCOPY);
 
-        // Converte o bitmap para um stream de bytes
-        Gdiplus::Bitmap bitmap(hbmTela, nullptr);
-        IStream* stream = nullptr;
-        CreateStreamOnHGlobal(NULL, TRUE, &stream);
+        // Obtenha os dados de pixel
+        BITMAP bmpTela;
+        GetObject(hbmTela, sizeof(BITMAP), &bmpTela);
 
-        CLSID encoderClsid;
-        if (GetEncoderClsid(L"image/png", &encoderClsid) != -1) {
-            bitmap.Save(stream, &encoderClsid, nullptr);
+        int largura = bmpTela.bmWidth;
+        int altura = bmpTela.bmHeight;
+        int profundidade = bmpTela.bmBitsPixel / 8;  // Bytes por pixel
+
+        std::vector<BYTE> buffer(altura * bmpTela.bmWidthBytes);
+        GetBitmapBits(hbmTela, buffer.size(), &buffer[0]);
+
+        // Cria o objeto JSON
+        Json::Value jsonRaiz;
+        jsonRaiz["largura"] = largura;
+        jsonRaiz["altura"] = altura;
+        jsonRaiz["profundidade"] = profundidade;
+
+        // Adiciona os dados de pixel como uma lista de inteiros
+        for (size_t i = 0; i < buffer.size(); ++i) {
+            jsonRaiz["pixels"].append(buffer[i]);
         }
 
-        // Move o ponteiro do stream para o início
-        LARGE_INTEGER liZero = {};
-        stream->Seek(liZero, STREAM_SEEK_SET, nullptr);
-
-        // Copia os dados do stream para um buffer
-        STATSTG statstg;
-        stream->Stat(&statstg, STATFLAG_NONAME);
-        std::vector<BYTE> buffer(statstg.cbSize.LowPart);
-        ULONG bytesRead;
-        stream->Read(buffer.data(), buffer.size(), &bytesRead);
-
-        // Converte o buffer para base64
-        std::string base64Image = Base64Encode(buffer);
-
-        // Gera o JSON
-        Json::Value jsonData;
-        jsonData["image_base64"] = base64Image;
-        jsonData["format"] = "png";
-
-        // Converte o JSON para string
-        Json::StreamWriterBuilder writer;
-        jsonString = Json::writeString(writer, jsonData);
+        // Salva o arquivo JSON
+        std::ofstream arquivoJson(nomeArquivoJson);
+        arquivoJson << jsonRaiz;
+        arquivoJson.close();
 
         // Limpa
-        stream->Release();
         SelectObject(hdcMemDC, hbmAntigo);
         DeleteObject(hbmTela);
         DeleteDC(hdcMemDC);
@@ -103,16 +71,16 @@ bool CapturaTelaWindows(std::string& jsonString) {
 
 // Exemplo de uso:
 int main() {
-    // String para armazenar o JSON gerado
-    std::string jsonString;
+    // Nome do arquivo JSON para salvar os dados da captura de tela
+    std::string nomeArquivoJson = "captura_de_tela.json";
 
-    // Chama a função para capturar a tela e gerar o JSON
-    if (CapturaTelaWindows(jsonString)) {
-        std::cout << "Dados da captura de tela em JSON: \n" << jsonString << std::endl;
-    } else {
+    // Chama a função para capturar a tela
+    if (CapturaTelaWindows(nomeArquivoJson)) {
+        std::cout << "Captura de tela salva com sucesso como: " << nomeArquivoJson << std::endl;
+    }
+    else {
         std::cerr << "Falha ao capturar a tela." << std::endl;
     }
 
     return 0;
 }
-
