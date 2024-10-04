@@ -1,11 +1,10 @@
-:#include <windows.h>
+#include <windows.h>
 #include <gdiplus.h>
 #include <memory>
 #include <iostream>
 #include <ostream>
 #include <string>
 #include <vector>
-
 #pragma comment(lib, "gdiplus.lib")
 
 // Função auxiliar para obter o CLSID do encoder
