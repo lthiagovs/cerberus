@@ -1,0 +1,12 @@
+primeiro é preciso instalar uma biblioteca 
+escreva isso no terminal dentro do projeto -----> dotnet add package Newtonsoft.Json
+
+
+depois adicione isso no arquivo de configuração do projeto
+
+<ItemGroup>
+  <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+</ItemGroup>
+
+
+agora seja feliz, lembre de ler os comentarios do codigo por gentileza
