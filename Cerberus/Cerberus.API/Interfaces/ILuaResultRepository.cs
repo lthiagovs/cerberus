@@ -9,6 +9,8 @@ namespace Cerberus.API.Interfaces
 
         public ICollection<LuaResult> GetLuaResultsByIP(string IP);
 
+        public LuaResult? GetLuaResultByID(int ID);
+
         public bool CreateLuaResult(LuaResult luaResult);
 
 

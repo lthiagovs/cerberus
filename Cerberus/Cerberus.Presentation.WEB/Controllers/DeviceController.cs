@@ -1,4 +1,6 @@
 ﻿using Cerberus.Domain.ApiService.Interface;
+using Cerberus.Domain.Models.Machine;
+using Cerberus.Presentation.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cerberus.Presentation.WEB.Controllers
@@ -21,12 +23,17 @@ namespace Cerberus.Presentation.WEB.Controllers
             return View();
         }
 
-        public IActionResult DataView()
+        public IActionResult DataView([FromForm] ScriptRequest scriptRequest)
         {
 
+            int scriptID = Convert.ToInt32(scriptRequest.ID);
 
+            ComputerScript? script = _computerScriptApiService.GetComputerScriptByID(scriptID).Result;
 
-            return RedirectToAction("Index", "Script");
+            if (script == null)
+                return Index();
+
+            return RedirectToAction("Index", "Script", new {ID = scriptID});
 
         }
 

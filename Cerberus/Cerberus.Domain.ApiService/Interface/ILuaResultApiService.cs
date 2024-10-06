@@ -9,6 +9,8 @@ namespace Cerberus.Domain.ApiService.Interface
 
         public Task<List<LuaResult>> GetLuaResults();
 
+        public Task<LuaResult> GetLuaResultByID(int ID);
+
     }
 
 }

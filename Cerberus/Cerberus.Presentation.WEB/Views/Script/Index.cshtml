@@ -1,7 +1,10 @@
 ﻿@using Cerberus.Domain.Models.Machine
+@using Cerberus.Domain.Models.Script
+@model DataRequestModel
 @{
     ViewData["Title"] = "Home Page";
-    var scripts = TempData["Scripts"] as List<ComputerScript>;
+    var script = TempData["Script"] as ComputerScript;
+    var data = TempData["Data"] as List<LuaResult>;
 }
 
 <style>
@@ -86,47 +89,54 @@
 </style>
 
 <div class="container mt-4">
-    <!-- Script Card -->
-    <div class="info-card text-center fade-in">
-        <h2>Script</h2>
-        <p><strong>Name:</strong> Script Name</p>
-        <p><strong>Creator:</strong> User Name</p>
-        <p><strong>Consumes:</strong> DLL it consumes</p>
-        <div class="text-center">
-            <button class="btn btn-warning btn-custom">Edit</button>
-            <button class="btn btn-danger btn-custom">Delete</button>
-            <button class="btn btn-success btn-custom">Activate</button>
-        </div>
-    </div>
 
-    <!-- Data Card -->
-    <div class="info-card fade-in">
-        <h2 class="text-center">Data</h2>
-        <table class="table table-dark mt-4">
-            <thead class="table-header">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Active</th>
-                    <th>View</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (scripts != null)
-                {
-                    @foreach (var script in scripts)
-                    {
+    @if (script != null)
+    {
+        <div class="info-card text-center fade-in">
+            <h2>Script</h2>
+            <p><strong>Name:</strong> @script.Name</p>
+            <p><strong>Active:</strong> @script.Active</p>
+            <p><strong>Consumes:</strong> DLL it consumes</p>
+            <div class="text-center">
+                <button class="btn btn-warning btn-custom">Edit</button>
+                <button class="btn btn-danger btn-custom">Delete</button>
+                <button class="btn btn-success btn-custom">Activate</button>
+            </div>
+        </div>
+
+        @if (data != null)
+        {
+            <div class="info-card fade-in">
+                <h2 class="text-center">Data</h2>
+                <table class="table table-dark mt-4">
+                    <thead class="table-header">
                         <tr>
-                            <td>@script.ID</td>
-                            <td>@script.Name</td>
-                            <td>@script.Active</td>
-                            <td><button class="btn btn-info btn-custom">View</button></td>
+                            <th>ID</th>
+                            <th>IP</th>
+                            <th>Time</th>
+                            <th>View</th>
                         </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
+                    </thead>
+                    <tbody>
+
+                        @foreach(LuaResult result in data)
+                        {
+                            <form method="post" asp-page-handler="DataView">
+                                <input type="text" asp-for="ID" value="@result.ID" style="visibility: hidden" />
+                                <tr>
+                                    <td>@result.ID</td>
+                                    <td>@result.IP</td>
+                                    <td>@result.Time</td>
+                                    <td><button type="submit" asp-action="ShowData" class="btn btn-info">Data</button></td>
+                                </tr>
+                            </form>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
 
     <!-- Google Maps Section -->
     <div class="info-card fade-in">

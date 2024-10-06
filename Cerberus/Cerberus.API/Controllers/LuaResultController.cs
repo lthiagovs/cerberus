@@ -51,6 +51,23 @@ namespace Cerberus.API.Controllers
 
         }
 
+        [HttpGet("GetLuaResultByID")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<LuaResult>))]
+        public IActionResult GetLuaResultByID(int ID)
+        {
+
+            var result = this._luaResultRepository.GetLuaResultByID(ID);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+
+        }
+
         [HttpPost("CreateLuaResult")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

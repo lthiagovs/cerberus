@@ -24,7 +24,7 @@ namespace Cerberus.Presentation.WEB.Controllers
 
         }
 
-        public async Task<IActionResult> AcessDevice([FromForm] DeviceRequest deviceRequest)
+        public async Task<IActionResult> AcessDevice([FromForm] DeviceRequestModel deviceRequest)
         {
 
             if (deviceRequest == null)
