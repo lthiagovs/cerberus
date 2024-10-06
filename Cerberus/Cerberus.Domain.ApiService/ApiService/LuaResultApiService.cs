@@ -60,6 +60,27 @@ namespace Cerberus.Domain.ApiService.ApiService
             return result;
         }
 
+        public async Task<LuaResult> GetLuaResultByID(int ID)
+        {
+            var request = new RestRequest("LuaResult/GetLuaResultByID", Method.Get); // Altere para o método apropriado (POST)
+            request.AddParameter("ID", ID);
+
+            var response = await _client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+                throw new Exception($"Erro: {response.StatusCode} - {response.ErrorMessage}");
+
+            if (response.Content == null)
+                throw new Exception("Something went wrong.");
+
+            LuaResult? result = JsonConvert.DeserializeObject<LuaResult>(response.Content); // Remove o operador de nullability aqui
+
+            if (result == null)
+                throw new Exception("Something went wrong");
+
+            return result;
+        }
+
     }
 
 }

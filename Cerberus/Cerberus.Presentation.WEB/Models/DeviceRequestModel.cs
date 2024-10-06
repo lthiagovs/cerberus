@@ -1,6 +1,6 @@
 ﻿namespace Cerberus.Presentation.WEB.Models
 {
-    public class DeviceRequest
+    public class DeviceRequestModel
     {
 
         public string ID {  get; set; } = string.Empty;

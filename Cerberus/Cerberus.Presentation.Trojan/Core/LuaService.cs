@@ -12,6 +12,7 @@ namespace Cerberus.Presentation.Trojan.Core
          
         public string Name { get; set;}
         public bool LoopScript { get; set;}
+        public bool Active { get; set; } = false;
 
         private readonly Lua _lua;
         private Task<object[]>? _luaTask;
@@ -67,6 +68,7 @@ namespace Cerberus.Presentation.Trojan.Core
 
         public async Task StartAsync()
         {
+            this.Active = true;
             Console.WriteLine(this.Name + " async started...");
             if (this._luaTask != null)
             {
@@ -74,12 +76,8 @@ namespace Cerberus.Presentation.Trojan.Core
                 object[] result = await this._luaTask;
                 string serialized = JsonConvert.SerializeObject(result);
                 await SendAsync(serialized);
-                //Send(JsonConvert.SerializeObject(result));
-                if (this.LoopScript)
-                {
-                    Init();
-                    await StartAsync();
-                }
+                this.Init();
+                this.Active = false;
 
             }
 
@@ -121,6 +119,10 @@ namespace Cerberus.Presentation.Trojan.Core
 
         public void Stop()
         {
+
+            Console.WriteLine(this.Name + " - Stopped by server...");
+
+            this.Active = false;
             if(this._luaToken != null)
                 this._luaToken.Cancel();
         }

@@ -26,6 +26,11 @@ namespace Cerberus.API.Repository
             return this._context.LuaResult.Where(result => result.IP == IP).OrderBy(result => result.Time).ToList();
         }
 
+        public LuaResult? GetLuaResultByID(int ID)
+        {
+            return this._context.LuaResult.FirstOrDefault(result => result.ID == ID);
+        }
+
         public bool CreateLuaResult(LuaResult luaResult)
         {
             this._context.Add(luaResult);
