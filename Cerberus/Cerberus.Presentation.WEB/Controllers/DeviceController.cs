@@ -16,9 +16,19 @@ namespace Cerberus.Presentation.WEB.Controllers
         public IActionResult Index()
         {
 
-            TempData["Scripts"] = this._computerScriptApiService.GetComputerScripts();
+            TempData["Scripts"] = this._computerScriptApiService.GetComputerScripts().Result.ToList();
 
             return View();
         }
+
+        public IActionResult DataView()
+        {
+
+
+
+            return RedirectToAction("Index", "Script");
+
+        }
+
     }
 }

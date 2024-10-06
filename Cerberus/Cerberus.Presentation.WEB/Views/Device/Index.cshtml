@@ -1,4 +1,5 @@
 ﻿@using Cerberus.Domain.Models.Machine
+@model ScriptRequest
 @{
     ViewData["Title"] = "Device Page";
     var scripts = TempData["Scripts"] as List<ComputerScript>;
@@ -129,11 +130,14 @@
                     @foreach (var script in scripts)
                     {
                         <tr>
+                            <form method="post" asp-page-handler="DataView">
+                            <input type="text" asp-for="ID" value="@script.ID" style="visibility: hidden" />
                             <td>@script.ID</td>
                             <td>@script.Name</td>
                             <td>@script.Active</td>
-                            <td><button class="btn btn-info btn-custom">Ver Dados</button></td>
+                            <td><button type="submit" asp-action="DataView" class="btn btn-info">Access</button></td>
                             <td><button class="btn btn-danger btn-custom">Excluir</button></td>
+                            </form>
                         </tr>
                     }
                 }

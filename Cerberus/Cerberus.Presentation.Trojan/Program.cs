@@ -11,42 +11,66 @@ public class Program
     private static ComputerScriptApiService _scriptService = new ComputerScriptApiService(new RestClient("http://localhost:5108/api"));
     private static LuaScriptManager _scriptManager = new LuaScriptManager();
 
-    private static async Task<int> ListenScriptCalls()
+    private static async Task<int> WorkOnScripts()
     {
-         
 
-        List<ComputerScript> _scripts = await _scriptService.GetComputerScripts();
-        _scripts = _scripts.ToList();
-        List<string> _services = _scriptManager.GetAllScripts();
-
-        foreach (ComputerScript script in _scripts)
+        while (Run)
         {
-            string? service = _services.FirstOrDefault(svc => svc == script.Name);
 
-            if (service != null)
+            List<ComputerScript> apiScripts = await _scriptService.GetComputerScripts();
+
+            foreach(string scriptName in _scriptManager.GetAllScripts())
             {
-                if (script.Active)
+
+                ComputerScript? _script = apiScripts.FirstOrDefault(script => script.Name == scriptName);
+                //This script is here!
+                if (_script != null)
                 {
-                    _ = await _scriptManager.StartScriptAsync(service);
+
+                    if (_script.Active)
+                    {
+
+                        if (!Program._scriptManager.IsScriptActive(scriptName))
+                        {
+                            _ = Program._scriptManager.StartScriptAsync(scriptName);
+                        }
+
+                    }
+                    else
+                    {
+
+                        if (Program._scriptManager.IsScriptActive(scriptName))
+                        {
+                            Program._scriptManager.StopScript(scriptName);
+                        }
+                        
+
+                    }
+
                 }
                 else
                 {
-                    _scriptManager.StopScript(service);
+
+                    //Return to api that this script is not present!
+
                 }
+
             }
+
 
         }
 
+
         return 1;
 
-    }
+    } 
 
 
     private static async Task Main(string[] args)
     {
 
         _scriptManager.LoadScripts();
-        _ = await Program.ListenScriptCalls();
+        _ = await Program.WorkOnScripts();
 
     }
 }

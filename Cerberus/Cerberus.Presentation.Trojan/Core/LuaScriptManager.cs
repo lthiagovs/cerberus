@@ -44,6 +44,11 @@ namespace Cerberus.Presentation.Trojan.Core
             return _services.FirstOrDefault(script => script.Name == scriptName);
         }
 
+        public bool IsScriptActive(string scriptName)
+        {
+            return _services.FirstOrDefault(script => script.Name == scriptName)!.Active;
+        }
+
         public async Task<LuaService?> StartScriptAsync(string scriptName)
         {
 
