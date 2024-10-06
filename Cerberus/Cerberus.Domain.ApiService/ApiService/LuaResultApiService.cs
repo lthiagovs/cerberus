@@ -73,7 +73,7 @@ namespace Cerberus.Domain.ApiService.ApiService
             if (response.Content == null)
                 throw new Exception("Something went wrong.");
 
-            List<LuaResult>? result = JsonConvert.DeserializeObject<List<LuaResult>>(response.Content); // Remove o operador de nullability aqui
+            LuaResult? result = JsonConvert.DeserializeObject<LuaResult>(response.Content); // Remove o operador de nullability aqui
 
             if (result == null)
                 throw new Exception("Something went wrong");

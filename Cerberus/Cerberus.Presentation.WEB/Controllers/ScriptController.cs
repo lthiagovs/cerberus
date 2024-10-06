@@ -16,7 +16,7 @@ namespace Cerberus.Presentation.WEB.Controllers
         public ScriptController(ILuaResultApiService luaResultApiService, IComputerScriptApiService computerScriptApiService)
         {
             this._luaResultApiService = luaResultApiService;
-            _computerScriptApiService = computerScriptApiService;
+            this._computerScriptApiService = computerScriptApiService;
         }
 
 
@@ -34,13 +34,13 @@ namespace Cerberus.Presentation.WEB.Controllers
         public IActionResult ShowData([FromForm]DataRequestModel dataRequest)
         {
 
-            int ID = Convert.ToInt32(dataRequest);
+            int ID = Convert.ToInt32(dataRequest.ID);
 
             LuaResult? result = _luaResultApiService.GetLuaResultByID(ID).Result;
 
             byte[] htmlBytes = System.Text.Encoding.UTF8.GetBytes(result.Json);
 
-            return File(htmlBytes, "text/html", "pagina-gerada.html");
+            return File(htmlBytes, "text/html", result.ID+" - data.html");
 
         }
 
